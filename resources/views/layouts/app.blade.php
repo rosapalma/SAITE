@@ -18,7 +18,9 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
+         <x-header />
         <x-banner />
+        SISTEMA DE ASISTENCIA E INVENTARIO TECNOLOGICO DE EQUIPOS UPEL-IPM 
 
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')

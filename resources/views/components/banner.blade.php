@@ -30,7 +30,7 @@
 
                 <p class="ms-3 font-medium text-sm text-white truncate" x-text="message"></p>
             </div>
-
+dddddddddddddddddd
             <div class="shrink-0 sm:ms-3">
                 <button
                     type="button"
@@ -41,7 +41,7 @@
                     <svg class="size-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
-                </button>
+                </button>dddddddddddd
             </div>
         </div>
     </div>
