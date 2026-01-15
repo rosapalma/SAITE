@@ -8,7 +8,7 @@ class Personal extends Model
 {
     protected $table = 'personals';
     protected $fillable = [ 'cedula','full_name','departamento_id', ];
-     protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
 
     public function departamento() 
     {
