@@ -17,8 +17,8 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div>
-                <x-input id="cedula" type="text" exists:personals class=" block mt-1 w-full" name="cedula" value="{{ old('cedula') }}" placeholder="CÉDULA" required autofocus />
+             <div>
+                <x-input id="email" type="text" exists:personals class=" block mt-1 w-full" name="email" value="{{ old('email') }}" placeholder="CORREO INSTITUCIONAL" required autofocus />
             </div>
 
             <div class="mt-4">

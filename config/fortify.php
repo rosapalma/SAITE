@@ -44,9 +44,8 @@ return [
     | another name for the field you may define it below as needed.
     |
     */
-    //'cedula' => 'cedula',
-    'username' => 'cedula',
-    //'email' => 'email',
+    'username' => 'email',
+    'email' => 'email',
 
     /*
     |--------------------------------------------------------------------------

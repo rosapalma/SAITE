@@ -13,7 +13,6 @@ class User extends Authenticatable
   
     protected $fillable = [
         'personal_id',
-        'cedula',
         'email',
         'password',
         'privilege',

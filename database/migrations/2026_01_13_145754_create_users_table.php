@@ -15,7 +15,6 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->unsignedBigInteger('personal_id');
-            //$table->string('cedula')->unique();
             $table->string('email')->unique();
             $table->string('password'); //la misma cedula
             $table->integer('privilege');
@@ -26,8 +25,7 @@ return new class extends Migration
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->integer('cedula')->primary();
-            //$table->string('email')->primary();
+            $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
