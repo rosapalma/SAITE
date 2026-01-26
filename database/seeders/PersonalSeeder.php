@@ -22,6 +22,7 @@ class PersonalSeeder extends Seeder
         [
             'cedula'=>17708149,
             'full_name' => 'ROSA VIRGINIA PALMA BRAVO',
+            'email'=> 'virginia.palma.ipm@upel.edu.ve',
             'departamento_id' => 1], 
         );
       

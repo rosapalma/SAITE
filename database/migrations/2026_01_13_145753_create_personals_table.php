@@ -15,9 +15,9 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->integer('cedula')->unique();
-            $table->string('full_name')->nullable();
-           // $table->string('email')->nullable();          
-            $table->unsignedBigInteger('departamento_id')->nullable(); //dpto
+            $table->string('full_name');
+            $table->string('email');      
+            $table->unsignedBigInteger('departamento_id'); //dpto
             //$table->unsignedBigInteger('sede_id')->nullable();
             $table->timestamps();
 

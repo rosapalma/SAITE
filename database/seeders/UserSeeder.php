@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(///fijo
         [
             'personal_id'=>1,
-            'cedula'=>17708149,
+            //'cedula'=>17708149,
+            'email'=>'virginia.palma.ipm@upel.edu.ve',
             'password' => Hash::make('17708149'),
             'privilege' => 1], 
         );

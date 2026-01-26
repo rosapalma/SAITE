@@ -15,7 +15,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->unsignedBigInteger('personal_id');
-            $table->string('cedula')->unique();
+            //$table->string('cedula')->unique();
             $table->string('email')->unique();
             $table->string('password'); //la misma cedula
             $table->integer('privilege');

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
            PersonalSeeder::class,  
            UserSeeder::class,  
            EquipoSeeder::class,
+           ResponsableSeeder::class,
         ]);
     }
 }
