@@ -10,10 +10,9 @@ class Equipo extends Model
     protected $fillable = [ 'marca','modelo','serial','serial_bienes','tipo' ];
     protected $primaryKey = 'id';
 
-    public function responsable() 
+    public function responsable()
     {
         return $this->hasOne(Responsable::class);
     }
-
 
 }

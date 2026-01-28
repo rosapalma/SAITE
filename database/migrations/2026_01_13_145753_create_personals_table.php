@@ -17,12 +17,10 @@ return new class extends Migration
             $table->integer('cedula')->unique();
             $table->string('full_name');
             $table->string('email');      
-            $table->unsignedBigInteger('departamento_id'); //dpto
-            //$table->unsignedBigInteger('sede_id')->nullable();
+            $table->unsignedBigInteger('departamento_id'); 
             $table->timestamps();
 
             $table->foreign('departamento_id')->references('id')->on('departamentos');
-           // $table->foreign('sede_id')->references('id')->on('sedes');
         });
     }
 

@@ -20,6 +20,15 @@ class Personal extends Model
         return $this->hasOne(User::class);
     }
 
+
+
+
+    public function responsable()
+    {
+        return $this->hasMany(Responsable::class);
+    }
+
+
         
 
 }
