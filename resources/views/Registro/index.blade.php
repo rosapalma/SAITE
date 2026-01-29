@@ -5,8 +5,8 @@
 	@include ('Registro.filtrar') <!-- BUSCAR  vista filtrar-->
     
 	
-	@if (session('mensaje')) <!-- ACA EL MENSJ DE REGISTRO INSERTADO-->
-        <h1 align="center" class="text-3xl font-bold underline text-red-50">      {{ session('mensaje') }}   
+	@if (session('message')) <!-- ACA EL MENSJ DE REGISTRO INSERTADO-->
+        <h1 align="center" class="text-3xl font-bold underline text-red-50">      {{ session('message') }}   
         </h1>
     @endif
 

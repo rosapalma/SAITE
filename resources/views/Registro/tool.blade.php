@@ -1,5 +1,3 @@
-
-
 <table class="table" >
   <thead class="thead-dark">
     <tr align="center">
@@ -28,10 +26,9 @@
     @endforeach
   </tbody>
 </table>
-<<<<<<< HEAD
-=======
+
 <!-- falta add paginacion -->
->>>>>>> Grup
+
 
 
 
