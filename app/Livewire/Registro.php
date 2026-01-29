@@ -10,7 +10,11 @@ class Registro extends Component
 {
     use WithPagination;
     #[Url] // Mantiene el filtro en la barra de direcciones
+<<<<<<< HEAD
     public $search = '', $searchtipo;
+=======
+    public $searchmarca = '',$searchmodelo = '', $searchtipo = '';
+>>>>>>> Grup
     #[Url]
     public $equipo_id, $modelo, $marca, $serial, $serial_bienes, $tipo;
     public $isOpen = false;  // Controla la visibilidad del modal
@@ -23,9 +27,19 @@ class Registro extends Component
     {
         return view('livewire.registro', [
             'equipos' => Equipo::query()
+<<<<<<< HEAD
                 ->when($this->search, function($query) {
                     $query->where('marca', 'like', '%' . $this->search . '%');
                 })
+=======
+                ->when($this->searchmarca, function($query) {
+                    $query->where('marca', 'like', '%' . $this->searchmarca . '%');
+                })
+                 ->when($this->searchmodelo, function($query) {
+                    $query->where('modelo', 'like', '%' . $this->searchmodelo . '%');
+                })
+              
+>>>>>>> Grup
                 ->when($this->searchtipo, function($query) {
                     $query->where('tipo', $this->searchtipo);
                 })
@@ -35,7 +49,11 @@ class Registro extends Component
 
     public function clearFilters()
     {
+<<<<<<< HEAD
         $this->reset(['search', 'searchtipo']); // Resetea las propiedades seleccionadas
+=======
+        $this->reset(['searchmarca','searchmodelo' , 'searchtipo']); // Resetea las propiedades seleccionadas
+>>>>>>> Grup
         $this->resetPage(); // Opcional: vuelve a la página 1 si usas WithPagination
     } 
     public function create(){

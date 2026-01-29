@@ -28,6 +28,10 @@
     @endforeach
   </tbody>
 </table>
+<<<<<<< HEAD
+=======
+<!-- falta add paginacion -->
+>>>>>>> Grup
 
 
 
