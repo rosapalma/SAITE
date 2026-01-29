@@ -1,4 +1,4 @@
 <div >
-    @section('title','Registrar Equipos')
-    @include("Registro.equipo") 
+    @section('title','Administración de Equipos')
+    @include("Registro.index") 
 </div>
