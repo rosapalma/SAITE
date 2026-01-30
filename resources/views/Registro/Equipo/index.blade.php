@@ -2,7 +2,7 @@
 	<br><br><button type="button" wire:click="create()" aling="center" class="btn btn-primary">
     	 Nuevo 
     </button><br>
-	@include ('Registro.filtrar') <!-- BUSCAR  vista filtrar-->
+	@include ('Registro.Equipo.filtrar') <!-- BUSCAR  vista filtrar-->
     
 	
 	@if (session('message')) <!-- ACA EL MENSJ DE REGISTRO INSERTADO-->
@@ -10,11 +10,11 @@
         </h1>
     @endif
 
-	@include('Registro.tool') <!-- ACA SE MUESTRA LA TABLA vista tool-->
+	@include('Registro.Equipo.tool') <!-- ACA SE MUESTRA LA TABLA vista tool-->
 
 	   <!-- MODAL -->
         @if($isOpen)
-            @include ('Registro.modal') <!-- modal, para registra nuevo o editar -->
+            @include ('Registro.Equipo.modal') <!-- modal, para registra nuevo o editar -->
         @endif
 	
 </div>

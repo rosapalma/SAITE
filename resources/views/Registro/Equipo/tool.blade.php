@@ -21,7 +21,7 @@
             @elseif ($eq['tipo']==3)COMPONENTE
             @endif</td>
             <td><button type="button" wire:click="edit({{ $eq->id }})" class="btn btn-warning">Editar</button>
-                        <button type="button" wire:click="delete({{ $eq->id }})" class="btn btn-danger">Borrar</button></td>
+                <button type="button" wire:click="delete({{ $eq->id }})" onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()"class="btn btn-danger">Borrar</button></td>
       </tr>
     @endforeach
   </tbody>

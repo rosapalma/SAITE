@@ -51,7 +51,7 @@
                             <x-dropdown-link href="{{ route('RegistEquipo') }}" >
                                 {{ __('Equipos') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="" >
+                            <x-dropdown-link href="{{ route('RegistResponsabl') }}" >
                                 {{ __('Responsables') }}
                             </x-dropdown-link>                   
 

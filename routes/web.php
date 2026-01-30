@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Livewire\Registro;
+use App\Livewire\EquipoComp;
+use App\Livewire\ResponsablComp;
 
 
 
@@ -19,7 +20,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/RegistEquipos',Registro::class)->name('RegistEquipo');
+    Route::get('/RegistEquipos',EquipoComp::class)->name('RegistEquipo');
+
+    Route::get('/RegistResponsabl',ResponsablComp::class)->name('RegistResponsabl');
      
 });
 

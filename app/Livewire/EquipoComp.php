@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Equipo;
 
-class Registro extends Component
+class EquipoComp extends Component
 {
     use WithPagination;
     #[Url] // Mantiene el filtro en la barra de direcciones
@@ -21,7 +21,7 @@ class Registro extends Component
 
     public function render()
     {
-        return view('livewire.registro', [
+        return view('livewire.equipo-comp', [
             'equipos' => Equipo::query()
                 ->when($this->searchmarca, function($query) {
                     $query->where('marca', 'like', '%' . $this->searchmarca . '%');
@@ -49,22 +49,6 @@ class Registro extends Component
         $this->resetInputFields();
         $this->openModal();
     }
-
-    // public function save()
-    // {
-    //     $this->validate(['marca' => 'required']);
-    //     $this->validate(['modelo'=>'required']);
-    //     $AddNewEquipo = Equipo::save([
-    //             'marca' => $this->marca,
-    //             'modelo' => $this->modelo,
-    //             'serial'=> $this->serial,
-    //             'serial_bienes' => $this->serial_bienes,
-    //             'tipo' => $this->tipo,
-    //             ]);
-    //     $AddNewEquipo->save(); 
-    //     $this->mount();
-    //     return back()->with('mensaje','Equipo Registrado'); 
-    // }
     
     public function store()
     {
@@ -83,6 +67,7 @@ class Registro extends Component
             'serial_bienes' => $this->serial_bienes,
             'tipo' => $this->tipo
         ]);
+
         session()->flash('message', $this->equipo_id ? 'Registro actualizado.' : 'Registro creado.');
         $this->closeModal();
         $this->resetInputFields();
@@ -102,6 +87,8 @@ class Registro extends Component
 
     public function delete($id)
     {
+        $buscarrelacion = Equipo::findOrFail($id);
+        echo $buscarrelacion;
         Equipo::find($id)->delete();
         session()->flash('message', 'Registro eliminado.');
     }
@@ -119,3 +106,4 @@ class Registro extends Component
     }
 
 }
+        
