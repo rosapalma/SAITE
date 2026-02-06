@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Equipo extends Model
 {
     protected $table = 'equipos';
-    protected $fillable = [ 'marca','modelo','serial','serial_bienes','tipo' ];
+    protected $fillable = [ 'marca','serial','serial_BN','estado' ];
     protected $primaryKey = 'id';
 
     public function responsable()

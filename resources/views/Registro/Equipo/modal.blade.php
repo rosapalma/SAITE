@@ -12,26 +12,13 @@
 				    	<input type="text" wire:model.live="marca">
 				    </div>
 				    <div>
-				    	<label>Modelo</label>
-				    	<input type="text" wire:model.live="modelo">
-				    </div>
-				    <div>
 				        <label>Serial</label>
 				        <input type="text" wire:model.live="serial" wire:model.live="serial">
 				    </div>
 				    <div>
 				    	<label>Serial de Bienes </label>
-				    	<input type="text" wire:model.live="serial_bienes">
+				    	<input type="text" wire:model.live="serial_BN">
 				    </div>
-				    <div>
-                        <label>TIPO</label>
-    				    <select wire:model.live="tipo" required>
-    				      <option value="">Seleccione</option>
-    				      <option value="1">CPU</option>
-    				      <option value="2">PERIFERICO</option>
-    				      <option value="3">COMPONENTE</option>
-    				    </select>
-                    </div>
                     <div class="p-4 bg-gray-50 flex justify-end">
                         <button type="button" wire:click="closeModal()" class="btn btn-danger">Cancelar</button>
                         <button type="submit" class="btn btn-success"> Guardar</button>

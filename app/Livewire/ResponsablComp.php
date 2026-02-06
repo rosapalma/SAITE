@@ -7,13 +7,14 @@ use App\Models\Departamento;
 use App\Models\Personal;
 use App\Models\Responsable;
 use App\Models\Equipo;
+use App\Models\User;
 
 class ResponsablComp extends Component
 {
     public $dptos, $cedula,$full_name,$email, $departamento_id, $personal_id;
-    public $equipo_id, $modelo, $marca, $serial, $serial_bienes, $tipo;
+    public $equipo_id, $marca, $serial, $serialBN, $estado;
     public $new=false, $RegPers=false, $ver=false;
-    public $searchcedula, $searchpersonal, $inputcedula, $inputserialB, $searchequipo;
+    public $searchcedula, $searchpersonal, $inputcedula, $inputserialB, $searchequipo, $search;
 
     function mount(){
         $this->dptos = Departamento::all();
@@ -36,15 +37,6 @@ class ResponsablComp extends Component
         $this->personal_id = $searchpersonal->id;
         $this->ver =true;
     }
-    public function ShearEquipo(){
-       $searchequipo = Equipo::where('serial_bienes','=',$this->inputserialB)->first();
-       $this->searchequipo= $searchequipo;
-        $this->equipo_id = $searchequipo->id;
-        $this->modelo = $searchequipo->modelo;
-        $this->marca= $searchequipo->marca;
-        $this->tipo = $searchequipo->tipo;
-        $this->verEquipo =true;
-    }
     public function store()
     {
         $this->validate([
@@ -59,23 +51,52 @@ class ResponsablComp extends Component
             'cedula' => $this->cedula,
             'email'=> $this->email,
             'departamento_id' => $this->departamento_id,
-
         ]);
+        $this->CreateUser();
         session()->flash('message', 'Datos Guardado con exito.');
         $this->ver = true;
         $this->new= false;
+        
     }
-    public function Guardar(){
-        Responsable::Create([
-            'personal_id' => $this->personal_id,
-            'equipo_id' => $this->equipo_id,
-            'fecha_asig'=> Date('Y-m-d'),
-
+    public function CreateUser(){
+        $personal = Personal::where('cedula','=',$this->cedula)->first();
+        User::Create([
+            'personal_id' => $personal->id,
+            'email' =>$this->email,
+            'password'=>Hash::make($this->cedula),
+            'privilege' => 3,
         ]);
 
-        session()->flash('message', 'Datos Guardado con exito.');
-        $this->resetInputFields();
-        $this->closenew();
+    }
+    public function ShearEquipo(){
+        $searchequipo = Equipo::where('serial_BN','=',$this->serialBN)->first();
+        $this->searchequipo= $searchequipo;
+        $this->equipo_id = $searchequipo->id;
+        $this->marca= $searchequipo->marca;
+        $this->estado = $searchequipo->estado;
+        $this->verEquipo =true;
+    }
+    public function Guardar(){
+        $this->validate([
+            'cedula' => 'required',
+            'serialBN' => 'required',
+        ]);
+       $search = Responsable::where('equipo_id','=',$this->equipo_id)->first();
+         if ($search and $search->estado != 'STOP'){
+            //$this->search=$search;
+             session()->flash('message', 'EQUIPO YA SE ENCUENTRA ASIGNADO 0 ESTA DESINCORPORADO.');
+         }else{
+           Responsable::Create([
+                'personal_id' => $this->personal_id,
+                'equipo_id' => $this->equipo_id,
+                'fecha_asig'=> Date('Y-m-d'), //asigna la fecha o la establece el operador
+            ]);
+            session()->flash('message', 'Datos Guardado con exito.');
+            $this->resetInputFields();
+            $this->closenew();            
+         }
+      
+
     }
     public function closenew(){
         $this->new= false;

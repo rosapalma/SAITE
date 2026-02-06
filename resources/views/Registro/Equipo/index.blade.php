@@ -16,5 +16,9 @@
         @if($isOpen)
             @include ('Registro.Equipo.modal') <!-- modal, para registra nuevo o editar -->
         @endif
+
+         @if($isOpenShow)
+            @include ('Registro.Equipo.show') <!-- modal, para registra nuevo o editar -->
+        @endif
 	
 </div>

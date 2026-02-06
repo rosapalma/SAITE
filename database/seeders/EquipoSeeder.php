@@ -19,27 +19,24 @@ class EquipoSeeder extends Seeder
             
         DB::table('equipos')->insert(
         [
-            'marca'=>'HP',
-            'modelo' => 'COMPUTADOLA',
+            'marca'=>'COMPUTADORA HP',
             'serial'=>'111111',
-            'serial_bienes' => '000111', 
-            'tipo'=>1], // equipo
+            'serial_BN' => '000111', 
+            'estado'=>'ASIG'], // asignada
         );
         DB::table('equipos')->insert(
         [
-            'marca'=>'GENIU',
-            'modelo' => 'MOUSE',
+            'marca'=>'MOUSE GENIU',
             'serial'=>'111112',
-            'serial_bienes' => '000122', 
-            'tipo'=>2], //periferico
+            'serial_BN' => '000122', 
+            'estado'=>'STOP'], //stop
         );
         DB::table('equipos')->insert(
         [
-            'marca'=>'EPSON',
-            'modelo' => 'IMPRESORA',
+            'marca'=>'IMPRESORA EPSON',
             'serial'=>'111113',
-            'serial_bienes' => '000133', 
-            'tipo'=>3], //COMPONENTE
+            'serial_BN' => '000133', 
+            'estado'=>'DESIN'], //desincorporado
         );
     }
 }

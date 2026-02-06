@@ -15,7 +15,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->unsignedBigInteger('personal_id');
-            $table->unsignedBigInteger('equipo_id');
+            $table->unsignedBigInteger('equipo_id')->unique();
             $table->date('fecha_asig')->nullable();
             $table->timestamps();
 
