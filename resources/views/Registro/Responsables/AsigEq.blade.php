@@ -1,7 +1,6 @@
 <x-validation-errors class="mb-4" />
 <h2 class="text-lg">Asignar Equipo</h2>
 <input wire:model.live="serial_BN" type="text"  placeholder="Serial" wire:change="ShearEquipo">
-Ubicacion del responsable: {{$ubicacion_id}}
 
 @if($Dataequipo)
 	@foreach ($Dataequipo as $eq)
@@ -13,7 +12,7 @@ Ubicacion del responsable: {{$ubicacion_id}}
 		   <label>Ubicación: {{$eq['ubicacion_id']}}</label>
 		</div>      
 		<div>
-			indique la fecha fecha: 
+			indique la fecha: 
 			<input type="date" wire:model.live="fecha_asig">
 		</div>    
 	         <button type="submit" class="btn btn-success" wire:click="AsignarEquipo"> Asignar</button>

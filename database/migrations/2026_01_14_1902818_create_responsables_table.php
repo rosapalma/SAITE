@@ -11,19 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('soli_servicios', function (Blueprint $table) {
+        Schema::create('responsables', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('responsable_id');
-             $table->unsignedBigInteger('equipo_id');
-            $table->string('descripcion');
-            $table->string('statud');
+            $table->string('full_name');
+            $table->integer('cedula');
+            $table->string('email');
             $table->timestamps();
-
-    
-
-            $table->foreign('responsable_id')->references('id')->on('responsables');
-            $table->foreign('equipo_id')->references('id')->on('equipos');
         });
     }
 
@@ -32,7 +26,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('soli_servicios');
+        Schema::dropIfExists('responsables');
 
     }
 };

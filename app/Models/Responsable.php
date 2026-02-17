@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Responsable extends Model
 {
     protected $table = 'responsables';
-    protected $fillable = ['cedula','full_name','email','ubicacion_id','fecha_asig' ];
+    protected $fillable = ['cedula','full_name','email' ];
     protected $primaryKey = 'id';
 
     public function departamento() 

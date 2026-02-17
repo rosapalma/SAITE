@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('equipo_id');
             $table->string('descripcion');
             $table->string('statud');
+            $table->date('fecha');
             $table->timestamps();
 
             $table->foreign('responsable_id')->references('id')->on('responsables');

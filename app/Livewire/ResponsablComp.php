@@ -101,7 +101,7 @@ class ResponsablComp extends Component
         $AsigEqui =  Equipo::where('id','=', $this->equipo_id)->first();
                 $AsigEqui->update([
                  'responsable_id' => $this->responsable_id,
-                 'fecha_asig' => $this->fecha_adq,
+                 'fecha_asig' => $this->fecha_asig,
                  'estado' => 'ASIG',
                 // 'ubicacion_id'=> 
 
