@@ -6,6 +6,11 @@
 		 <h3 align="center" class=" bg-success"> 
 		      {{ session('message') }}   
 	     </h3>
+	     @endif
+	     @if (session('Alertmessage'))
+		 <h3 align="center" class=" bg-warning"> 
+		      {{ session('Alertmessage') }}   
+	     </h3>
 	    @endif
 	    
 	@if($new)<!--MODAL-->

@@ -8,7 +8,14 @@
 				    	<p>Marca|Modelo: {{$marca_modelo}}</p>
 				    	<p>Serial: {{$serial}}</p>	
 				    	<p>Serian BN: {{$serial_BN}}</p>
+				    	<p>Ubicacion: {{$ubicacion_id}}</p>
+				    	@if($responsable){
+				    		<p>Responsable: {{$responsable}}</p>
+				    	<p>Fecha de asignacion: {{$fecha_asig}}</p>
+				    	@endif
+				    	
 				    	<p>Estado: {{$estado}}</p>
+				    	<p>Fecha de Adquisicion: {{$fecha_adq}}</p>
 				    </div>
 				  
 				

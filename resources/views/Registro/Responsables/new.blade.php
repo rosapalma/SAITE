@@ -20,11 +20,11 @@
 			        <input type="email" wire:model.live="email">
 			    </div>
 			    <div>
-                    <label>Departamento</label>
-    			    <select wire:model.live="departamento_id" required>
+                    <label>Dependencia</label>
+    			    <select wire:model.live="ubicacion_id" required>
        	         	    <option value="">Seleccione</option>
-       	         	    @foreach ($dptos as $dp)
-    				    <option value="{{$dp->id}}">{{$dp->name}}</option>
+       	         	    @foreach ($ubicacions as $dp)
+    				    	<option value="{{$dp->id}}">{{$dp->name}}</option>
     				    @endforeach
     				    </select>
                     </div>

@@ -22,7 +22,7 @@ class ResponsableSeeder extends Seeder
             ['cedula'=>17708149,
             'full_name' => 'ROSA VIRGINIA PALMA BRAVO',
             'email'=> 'virginia.palma.ipm@upel.edu.ve',
-            'departamento_id' => 1], 
+            'ubicacion_id'=>1], 
             );
 
 

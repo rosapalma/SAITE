@@ -3,28 +3,29 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Departamento;
+use App\Models\Ubicacion;
 use App\Models\Responsable;
 use App\Models\Equipo;
 use App\Models\User;
 use Hash;
 class ResponsablComp extends Component
 {
-    public $dptos, $cedula,$full_name,$email, $responsable_id, $departamento_id;
+    public  $ubicacion_id, $cedula,$full_name,$email, $responsable_id ;
     public $equipo_id, $marca_modelo, $serial, $serial_BN, $estado, $fecha_asig;
     public $new=false, $ver=false;
-    public $responsable, $responsable2, $Dataequipo, $AsigEqui;
-
-
+    public $responsable, $Dataequipo, $AsigEqui, $ubicacions;
 
 
     function mount(){
-        $this->dptos = Departamento::all();
+        $this->ubicacions = Ubicacion::all();
     }
 
-    public function render()  { return view('livewire.responsabl-comp');    }
+    public function render()  { 
+        return view('livewire.responsabl-comp');
+    }
 
-    public function ViewNew(){  $this->new=true;    }
+
+
 
     public function Shear()
     {
@@ -34,11 +35,12 @@ class ResponsablComp extends Component
             $this->full_name = $responsable->full_name;
             $this->cedula = $responsable->cedula;
             $this->email= $responsable->email;
-            $this->departamento_id = $responsable->departamento_id;
+            $this->ubicacion_id = $responsable->ubicacion_id;
             $this->responsable_id = $responsable->id;
         }else{
-            $this->ver =false; 
-             session()->flash('message', 'No esta registrado.');
+            $this->resetInputFields();
+            $this->ver =false;
+             session()->flash('Alertmessage', 'No esta registrado.');
         } 
     }
     //REGISTRAR NUEVO
@@ -48,13 +50,14 @@ class ResponsablComp extends Component
             'full_name' => 'required',
             'cedula' => 'required',
             'email'=> 'required | email',
-            'departamento_id' => 'required', //UBICACION DE EQUIPO
+            'ubicacion_id' => 'required', //DEPENDENCIA
+
         ]);
         responsable::Create([
             'full_name' => $this->full_name,
             'cedula' => $this->cedula,
             'email'=> $this->email,
-            'departamento_id' => $this->departamento_id,
+            'ubicacion_id' => $this->ubicacion_id,
         ]);
         $this->CreateUser();
         session()->flash('message', 'Datos Guardado con exito.');
@@ -73,7 +76,6 @@ class ResponsablComp extends Component
     }
 
     public function ShearEquipo(){
-        //$Dataequipo = Equipo::where('serial_BN','=', $this->serial_BN)->get();
         $Dataequipo = Equipo::where('serial_BN', 'like', '%' . $this->serial_BN . '%')
              ->orWhere('serial', 'like', '%' . $this->serial_BN . '%')
              ->get();
@@ -81,16 +83,28 @@ class ResponsablComp extends Component
         foreach ($Dataequipo as $key => $value) {
             $this->equipo_id= $value->id;
         }      
+        $Dataequipo = Equipo::where('serial_BN', '=', $this->serial_BN)->orWhere('serial', '=', $this->serial_BN)->get();
+        
+        $this->Dataequipo = $Dataequipo;
+        foreach ($Dataequipo as $key => $value) {
+                $this->equipo_id= $value->id;
+        }
     }
 
     public function AsignarEquipo(){
         $this->validate([
             'cedula' => 'required',
             'serial_BN' => 'required',
+            'fecha_asig' =>'required',
+
         ]); 
         $AsigEqui =  Equipo::where('id','=', $this->equipo_id)->first();
                 $AsigEqui->update([
                  'responsable_id' => $this->responsable_id,
+                 'fecha_asig' => $this->fecha_adq,
+                 'estado' => 'ASIG',
+                // 'ubicacion_id'=> 
+
                 ]);
                 $AsigEqui->save();      
         $this->resetInputFields();
@@ -103,6 +117,14 @@ class ResponsablComp extends Component
         $this->ver = false;
         $this->Dataequipo     = false;
     }
+
+    public function closenew(){
+        $this->new= false;
+        $this->ver = false;
+        $this->Dataequipo     = false;
+        $this->resetInputFields();
+
+    }
     
 
     public function resetInputFields()
@@ -110,10 +132,10 @@ class ResponsablComp extends Component
         $this->cedula='';
         $this->full_name ='';
         $this->email ='';
-        $this->departamento_id= '';
         $this->responsable_id ='';
+        $this->ubicacion_id= '';
+        $this->responsable ='';
         $this->equipo_id ='';
         $this->serial_BN = '';
-        $this->cedula = '';
     }
 }

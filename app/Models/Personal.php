@@ -9,7 +9,7 @@ class Personal extends Model
     protected $table = 'personals';
     protected $fillable = [ 'cedula','full_name','email','departamento_id', ];
     protected $primaryKey = 'id';
-
+// YA REEMPLAZADA X responsable
     public function departamento() 
     {
         return $this->belongsTo(Departamento::class);

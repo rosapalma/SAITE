@@ -51,7 +51,7 @@
                                 {{ __('Equipos') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="{{ route('RegistResponsabl') }}" >
-                                {{ __('Responsables') }}
+                                {{ __('Asig. Equipo') }}
                             </x-dropdown-link> 
                               <x-dropdown-link href="" >
                                 {{ __('Usuarios') }}

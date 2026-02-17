@@ -22,19 +22,21 @@ class EquipoSeeder extends Seeder
         [
             'tipo'=>'COMPUTADORA',
             'marca_modelo'=>'HP',
-            //'ubicacion'=>1,
-            'fecha_adq'=>'2014-05-05',
             'serial'=>'111111',
-            'serial_BN' => '000111', 
-            'estado'=>'ASIG',
-            'responsable_id'=>1,], // asignada
+            'serial_BN' => '000111',
+            'responsable_id'=>1, // asignada
+            'ubicacion_id'=>1,
+            'fecha_adq'=>'2014-05-05',
+            'fecha_asig'=>'2026-01-01',
+            'estado'=>'ASIG'], //fecha ultima de adsignacion
+        
             
         );
         DB::table('equipos')->insert(
         [
             'tipo'=>'REGULADOR',
             'marca_modelo'=>'FORZA',
-            //'ubicacion'=>1,
+            'ubicacion_id'=>1,
             'fecha_adq'=>'2014-05-05',
             'serial'=>'111112',
             'serial_BN' => '000122',
@@ -44,13 +46,11 @@ class EquipoSeeder extends Seeder
         [
             'tipo'=>'COMPONENTE',
             'marca_modelo'=>'MOUSE GENIU',
-            //'ubicacion'=>1,
             'fecha_adq'=>'2014-05-05',
+            'ubicacion_id'=>5,
             'serial'=>'111113',
             'serial_BN' => '000133', 
-            'estado'=>'DESIN',
-            'responsable_id'=>1,],
-             //desincorporado
+            'estado'=>'DESIN',],
         );
     }
 }
