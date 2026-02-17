@@ -8,8 +8,8 @@
                     <div class="p-6">
                         <h2 class="text-lg font-bold mb-4">{{ $equipo_id ? 'Editar Registro' : 'Nuevo Registro' }}</h2>
 				    <div>
-				    	<label>Marca</label>
-				    	<input type="text" wire:model.live="marca">
+				    	<label>Marca || Modelo</label>
+				    	<input type="text" wire:model.live="marca_modelo">
 				    </div>
 				    <div>
 				        <label>Serial</label>

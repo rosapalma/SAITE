@@ -5,7 +5,7 @@
                     <div class="p-6">
                         <h2 class="text-lg font-bold mb-4"> Detalles de Equipo </h2>
 				    <div>
-				    	<p>Marca: {{$marca}}</p>
+				    	<p>Marca|Modelo: {{$marca_modelo}}</p>
 				    	<p>Serial: {{$serial}}</p>	
 				    	<p>Serian BN: {{$serial_BN}}</p>
 				    	<p>Estado: {{$estado}}</p>

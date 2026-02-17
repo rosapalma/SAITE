@@ -12,7 +12,7 @@ class EquipoComp extends Component
     #[Url] // Mantiene el filtro en la barra de direcciones
     public $searchserialbienes = '',$searchestado = '';
     #[Url]
-    public $equipo_id, $marca, $serial, $serial_BN, $estado;
+    public $equipo_id, $marca_modelo, $serial, $serial_BN, $estado;
     public $isOpen = false, $isOpenShow = false;  // Controla la visibilidad de modals
 
 
@@ -27,11 +27,13 @@ class EquipoComp extends Component
                 ->when($this->searchserialbienes, function($query){
                     $query->where('serial_BN', 'like', '%'. $this->searchserialbienes);
                  })
+               
                 ->when($this->searchestado, function($query) {
                     $query->where('estado', $this->searchestado);
                 })
                 ->paginate(10)
         ]);
+
     }
 
     public function clearFilters()
@@ -45,7 +47,7 @@ class EquipoComp extends Component
         $this->isOpenShow = true; 
         $equipo = Equipo::findOrFail($id);
         $this->equipo_id = $id;
-        $this->marca = $equipo->marca;
+        $this->marca_modelo = $equipo->marca_modelo;
         $this->serial = $equipo->serial;
         $this->serial_BN = $equipo->serial_BN;
         $this->estado = $equipo->estado;
@@ -58,17 +60,17 @@ class EquipoComp extends Component
     public function store()
     {
         $this->validate([
-            'marca' => 'required',
+            'marca_modelo' => 'required',
             'serial'=> 'required',
             'serial_BN' => 'required',
-            'estado' => 'required',
+            //'estado' => 'required',
 
         ]);
         Equipo::updateOrCreate(['id' => $this->equipo_id], [
-            'marca' => $this->marca,
+            'marca_modelo' => $this->marca_modelo,
             'serial'=> $this->serial,
             'serial_BN' => $this->serial_BN,
-            'estado' => $this->estado
+            'estado' => $this->estado,
         ]);
 
         session()->flash('message', $this->equipo_id ? 'Registro actualizado.' : 'Registro creado.');
@@ -80,7 +82,7 @@ class EquipoComp extends Component
     {
         $equipo = Equipo::findOrFail($id);
         $this->equipo_id = $id;
-        $this->marca = $equipo->marca;
+        $this->marca_modelo = $equipo->marca_modelo;
         $this->serial = $equipo->serial;
         $this->serial_BN = $equipo->serial_BN;
         $this->estado = $equipo->estado;
@@ -99,7 +101,7 @@ class EquipoComp extends Component
 
     public function resetInputFields()
     {
-        $this->marca='';
+        $this->marca_modelo='';
         $this->serial ='';
         $this->serial_bienes= '';
         $this->estado ='';

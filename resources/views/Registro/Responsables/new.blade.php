@@ -1,3 +1,5 @@
+  <!-- MODAL -->
+      
 <div class="fixed inset-0 flex items-center justify-center z-50">
     <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full z-50">
@@ -25,6 +27,9 @@
     				    <option value="{{$dp->id}}">{{$dp->name}}</option>
     				    @endforeach
     				    </select>
+                    </div>
+                    <div>
+                    	<input type="date" id="start" name="fecha_asig" value="2018-07-22" />fecha de asignacion
                     </div>
                     <div class="p-4 bg-gray-50 flex justify-end">
                         <button type="button" wire:click="closenew()" class="btn btn-danger">Cancelar</button>

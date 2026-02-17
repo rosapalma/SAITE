@@ -1,19 +1,16 @@
 <x-validation-errors class="mb-4" />
 <h2 class="text-lg">Asignar Equipo</h2>
-<input wire:model.live="serialBN" type="text"  placeholder="Serial BN" wire:change="ShearEquipo">
+<input wire:model.live="serial_BN" type="text"  placeholder="Serial" wire:change="ShearEquipo">
 
-@if($searchequipo)
-	<div>
-	   <label>Marca: {{$marca}}</label>
+@if($Dataequipo)
+	@foreach ($Dataequipo as $eq)
+	<div>Detalles: <br>
+	   <label>Marca|Modelo: {{$eq['marca_modelo']}}</label>
 	</div>
-	<div>
-	   <label>Estado del Equipo: {{$estado}}	</label>
-	</div>
+                      
+         <button type="submit" class="btn btn-success" wire:click="AsignarEquipo"> Asignar</button>
+      
+   
+	 @endforeach
+
 @endif
-<br><br><br>
-   <button type="button" wire:click="Guardar()" class="btn-success">
-        Guardar
-   </button>
-   {{$search}}
-
-

@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Equipo extends Model
 {
     protected $table = 'equipos';
-    protected $fillable = [ 'marca','serial','serial_BN','estado' ];
+    protected $fillable = [ 'tipo','marca_modelo','ubicacion','serial','serial_BN','responsable_id','estado','fecha_adq' ];
     protected $primaryKey = 'id';
 
     public function responsable()
     {
-        return $this->hasOne(Responsable::class);
+        return $this->belongsTo(Responsable::class);
     }
 
 }
+

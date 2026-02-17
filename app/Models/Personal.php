@@ -23,11 +23,15 @@ class Personal extends Model
 
 
 
-    public function responsable()
-    {
-        return $this->hasMany(Responsable::class);
-    }
+    // public function responsable()
+    // {
+    //     return $this->hasMany(Responsable::class);
+    // }
 
+    public function equipos()
+    {
+        return $this->hasMany(Equipo::class);
+    }
 
         
 

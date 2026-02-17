@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('responsables', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('personal_id');
-            $table->unsignedBigInteger('equipo_id')->unique();
+            $table->bigIncrements('id'); 
+            $table->integer('cedula')->unique();
+            $table->string('full_name');
+            $table->string('email');      
+            $table->unsignedBigInteger('departamento_id'); //no tiene importancia la relacion
             $table->date('fecha_asig')->nullable();
             $table->timestamps();
 
-            $table->foreign('personal_id')->references('id')->on('personals');
-            $table->foreign('equipo_id')->references('id')->on('equipos');
+            $table->foreign('departamento_id')->references('id')->on('departamentos');
       });
     }
 
