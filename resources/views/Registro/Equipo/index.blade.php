@@ -1,5 +1,5 @@
 <div>
-	<br><br><button type="button" wire:click="create()" aling="center" class="btn btn-primary">
+	<button type="button" wire:click="create()" aling="center" class="btn btn-primary">
     	 Nuevo 
     </button><br>
 	@include ('Registro.Equipo.filtrar') <!-- BUSCAR  vista filtrar-->

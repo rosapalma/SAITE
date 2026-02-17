@@ -29,8 +29,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
-        //Fortify::createUsersUsing(CreateNewUser::class);
+        Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
@@ -45,8 +44,5 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
-
-
-
     }
 }

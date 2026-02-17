@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+
 class EquipoSeeder extends Seeder
 {
     /**
@@ -19,24 +20,39 @@ class EquipoSeeder extends Seeder
             
         DB::table('equipos')->insert(
         [
-            'marca'=>'COMPUTADORA HP',
+            'tipo'=>'COMPUTADORA',
+            'marca_modelo'=>'HP',
+            'ubicacion_id'=>1,
             'serial'=>'111111',
             'serial_BN' => '000111', 
-            'estado'=>'ASIG'], // asignada
+            'estado'=>'ASIG',
+            'responsable_id'=>1,
+            'fecha_adq'=>'2014-05-05',
+            'fecha_asig'=>'2026-01-01', //fecha ultima de adsignacion
+        ],
+
+            
+            
         );
         DB::table('equipos')->insert(
         [
-            'marca'=>'MOUSE GENIU',
+            'tipo'=>'REGULADOR',
+            'marca_modelo'=>'FORZA',
+            'ubicacion_id'=>1,
+            'fecha_adq'=>'2014-05-05',
             'serial'=>'111112',
-            'serial_BN' => '000122', 
+            'serial_BN' => '000122',
             'estado'=>'STOP'], //stop
         );
         DB::table('equipos')->insert(
         [
-            'marca'=>'IMPRESORA EPSON',
+            'tipo'=>'COMPONENTE',
+            'marca_modelo'=>'MOUSE GENIU',
+            'ubicacion_id'=>5,
+            'fecha_adq'=>'2014-05-05',
             'serial'=>'111113',
             'serial_BN' => '000133', 
-            'estado'=>'DESIN'], //desincorporado
+            'estado'=>'DESIN',],
         );
     }
 }

@@ -1,3 +1,5 @@
+  <!-- MODAL -->
+      
 <div class="fixed inset-0 flex items-center justify-center z-50">
     <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full z-50">
@@ -18,18 +20,19 @@
 			        <input type="email" wire:model.live="email">
 			    </div>
 			    <div>
-                    <label>Departamento</label>
-    			    <select wire:model.live="departamento_id" required>
+                    <label>Dependencia</label>
+    			    <select wire:model.live="ubicacion_id" required>
        	         	    <option value="">Seleccione</option>
-       	         	    @foreach ($dptos as $dp)
-    				    <option value="{{$dp->id}}">{{$dp->name}}</option>
+       	         	    @foreach ($ubicacions as $dp)
+    				    	<option value="{{$dp->id}}">{{$dp->name}}</option>
     				    @endforeach
     				    </select>
-                    </div>
-                    <div class="p-4 bg-gray-50 flex justify-end">
-                        <button type="button" wire:click="closenew()" class="btn btn-danger">Cancelar</button>
-                        <button type="submit" class="btn btn-success"> Guardar</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+           
+                <div class="p-4 bg-gray-50 flex justify-end">
+                    <button type="button" wire:click="closenew()" class="btn btn-danger">Cancelar</button>
+                    <button type="submit" class="btn btn-success"> Guardar</button>
+                </div>
+            </form>
+        </div>
 </div>

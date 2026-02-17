@@ -14,13 +14,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             DB::table('users')->truncate();
-        //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         DB::table('users')->insert(///fijo
         [
-            'personal_id'=>1,
+            'responsable_id'=>1,
             'email'=>'virginia.palma.ipm@upel.edu.ve',
             'password' => Hash::make('17708149'),
             'privilege' => 1], 

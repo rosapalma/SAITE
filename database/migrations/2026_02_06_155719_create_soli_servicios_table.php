@@ -11,24 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('responsables', function (Blueprint $table) {
+        Schema::create('soli_servicios', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('personal_id');
-            $table->unsignedBigInteger('equipo_id')->unique();
-            $table->date('fecha_asig')->nullable();
+            $table->unsignedBigInteger('responsable_id');
+            $table->unsignedBigInteger('equipo_id');
+            $table->string('descripcion');
+            $table->string('statud');
             $table->timestamps();
 
-            $table->foreign('personal_id')->references('id')->on('personals');
+            $table->foreign('responsable_id')->references('id')->on('responsables');
             $table->foreign('equipo_id')->references('id')->on('equipos');
-      });
+        });
     }
 
     /**
-     * Reverse tequipotions.
+     * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('responsables');
+        Schema::dropIfExists('soli_servicios');
     }
 };

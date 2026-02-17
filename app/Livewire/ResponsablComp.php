@@ -3,125 +3,127 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Departamento;
-use App\Models\Personal;
+//use App\Models\Departamento;
+use App\Models\Ubicacion;
 use App\Models\Responsable;
 use App\Models\Equipo;
 use App\Models\User;
-
+use Hash;
 class ResponsablComp extends Component
 {
-    public $dptos, $cedula,$full_name,$email, $departamento_id, $personal_id;
-    public $equipo_id, $marca, $serial, $serialBN, $estado;
-    public $new=false, $RegPers=false, $ver=false;
-    public $searchcedula, $searchpersonal, $inputcedula, $inputserialB, $searchequipo, $search;
+    public $ubicacions, $cedula,$full_name,$email, $responsable_id, $ubicacion_id;
+    public $equipo_id, $marca_modelo, $serial, $serial_BN, $estado, $fecha_asig;
+    public $new=false, $ver=false;
+    public $responsable, $responsable2, $Dataequipo, $AsigEqui;
+
+
+
 
     function mount(){
-        $this->dptos = Departamento::all();
+        $this->ubicacions = Ubicacion::all();
     }
-    public function render()
-    {
-        return view('livewire.responsabl-comp');
-    }
-    public function ViewNew(){
-        $this->new=true;
-    }
+
+    public function render()  { return view('livewire.responsabl-comp');    }
+
+    public function ViewNew(){  $this->new=true;    }
 
     public function Shear()
     {
-        $searchpersonal = Personal::where('cedula','=',$this->inputcedula)->first();
-        $this->full_name = $searchpersonal->full_name;
-        $this->cedula = $searchpersonal->cedula;
-        $this->email= $searchpersonal->email;
-        $this->departamento_id = $searchpersonal->departamento_id;
-        $this->personal_id = $searchpersonal->id;
-        $this->ver =true;
+        $responsable = Responsable::where('cedula','=',$this->cedula)->first();
+        if ($responsable){
+            $this->ver =true;
+            $this->responsable = $responsable;
+            $this->full_name = $responsable->full_name;
+            $this->cedula = $responsable->cedula;
+            $this->email= $responsable->email;
+            $this->ubicacion_id = $responsable->ubicacion_id;
+            $this->responsable_id = $responsable->id;
+        }else{
+            $this->resetInputFields();
+            $this->ver =false;
+             session()->flash('Alertmessage', 'No esta registrado.');
+        } 
     }
+    //REGISTRAR NUEVO
     public function store()
     {
         $this->validate([
             'full_name' => 'required',
             'cedula' => 'required',
             'email'=> 'required | email',
-            'departamento_id' => 'required',
-
+            'ubicacion_id' => 'required', //UBICACION DE EQUIPO
         ]);
-        Personal::Create([
+        responsable::Create([
             'full_name' => $this->full_name,
             'cedula' => $this->cedula,
             'email'=> $this->email,
-            'departamento_id' => $this->departamento_id,
+            //'departamento_id' => $this->ubicacion_id,
+            'ubicacion_id' => $this->ubicacion_id,
         ]);
         $this->CreateUser();
         session()->flash('message', 'Datos Guardado con exito.');
         $this->ver = true;
         $this->new= false;
-        
     }
+
     public function CreateUser(){
-        $personal = Personal::where('cedula','=',$this->cedula)->first();
+        $responsable = Responsable::where('cedula','=',$this->cedula)->first();
         User::Create([
-            'personal_id' => $personal->id,
+            'responsable_id' => $responsable->id,
             'email' =>$this->email,
             'password'=>Hash::make($this->cedula),
             'privilege' => 3,
         ]);
+    }
 
-    }
     public function ShearEquipo(){
-        $searchequipo = Equipo::where('serial_BN','=',$this->serialBN)->first();
-        $this->searchequipo= $searchequipo;
-        $this->equipo_id = $searchequipo->id;
-        $this->marca= $searchequipo->marca;
-        $this->estado = $searchequipo->estado;
-        $this->verEquipo =true;
+        //$Dataequipo = Equipo::where('serial_BN','=', $this->serial_BN)->get();
+        $Dataequipo = Equipo::where('serial_BN', '=', $this->serial_BN)->orWhere('serial', '=', $this->serial_BN)->get();
+        
+        $this->Dataequipo = $Dataequipo;
+        foreach ($Dataequipo as $key => $value) {
+                $this->equipo_id= $value->id;
+        }  
+        
     }
-    public function Guardar(){
+
+    public function AsignarEquipo(){
         $this->validate([
             'cedula' => 'required',
-            'serialBN' => 'required',
-        ]);
-       $search = Responsable::where('equipo_id','=',$this->equipo_id)->first();
-         if ($search and $search->estado != 'STOP'){
-            //$this->search=$search;
-             session()->flash('message', 'EQUIPO YA SE ENCUENTRA ASIGNADO 0 ESTA DESINCORPORADO.');
-         }else{
-           Responsable::Create([
-                'personal_id' => $this->personal_id,
-                'equipo_id' => $this->equipo_id,
-                'fecha_asig'=> Date('Y-m-d'), //asigna la fecha o la establece el operador
-            ]);
-            session()->flash('message', 'Datos Guardado con exito.');
-            $this->resetInputFields();
-            $this->closenew();            
-         }
-      
-
+            'serial_BN' => 'required',
+            'fecha_asig' =>'required',
+        ]); 
+        $AsigEqui =  Equipo::where('id','=', $this->equipo_id)->first();
+                $AsigEqui->update([
+                 'responsable_id' => $this->responsable_id,
+                 'fecha_asig' => $this->fecha_adq,
+                 'estado' => 'ASIG',
+                // 'ubicacion_id'=> 
+                ]);
+                $AsigEqui->save();      
+        $this->resetInputFields();
+        $this->close();
+        session()->flash('message','Equipo Asignado');
     }
+
     public function closenew(){
         $this->new= false;
         $this->ver = false;
-        $this->searchequipo     = false;
+        $this->Dataequipo     = false;
+        $this->resetInputFields();
     }
     
-
-
-    public function ver(){
-        $full_name = $this->full_name;
-        $cedula = $this->cedula;
-        $email= $this->email;
-        $departamento_id = $this->departamento_id;
-    }
 
     public function resetInputFields()
     {
         $this->cedula='';
         $this->full_name ='';
         $this->email ='';
-        $this->departamento_id= '';
-        $this->personal_id ='';
+        $this->ubicacion_id= '';
+        $this->responsable_id ='';
+        $this->responsable ='';
         $this->equipo_id ='';
-        $this->inputserialB = '';
-        $this->inputcedula = '';
+        $this->serial_BN = '';
+        $this->cedula = '';
     }
 }

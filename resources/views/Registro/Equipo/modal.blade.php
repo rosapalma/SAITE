@@ -8,8 +8,8 @@
                     <div class="p-6">
                         <h2 class="text-lg font-bold mb-4">{{ $equipo_id ? 'Editar Registro' : 'Nuevo Registro' }}</h2>
 				    <div>
-				    	<label>Marca</label>
-				    	<input type="text" wire:model.live="marca">
+				    	<label>Marca || Modelo</label>
+				    	<input type="text" wire:model.live="marca_modelo">
 				    </div>
 				    <div>
 				        <label>Serial</label>
@@ -19,6 +19,15 @@
 				    	<label>Serial de Bienes </label>
 				    	<input type="text" wire:model.live="serial_BN">
 				    </div>
+				 <div>
+                    <label>Ubicación</label>
+    			    <select wire:model.live="ubicacion_id" required>
+       	         	    <option value="">Seleccione</option>
+       	         	    @foreach ($ubicacions as $dp)
+    				    <option value="{{$dp->id}}">{{$dp->name}}</option>
+    				    @endforeach
+    				    </select>
+                </div>
                     <div class="p-4 bg-gray-50 flex justify-end">
                         <button type="button" wire:click="closeModal()" class="btn btn-danger">Cancelar</button>
                         <button type="submit" class="btn btn-success"> Guardar</button>

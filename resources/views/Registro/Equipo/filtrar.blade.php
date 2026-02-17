@@ -1,6 +1,6 @@
 
   Buscar por: 
-     <input wire:model.live="searchserialbienes" type="text" placeholder="SERIAL BN"> 
+     <input wire:model.live="searchserialbienes" type="text" placeholder="SERIAL"> 
     <select wire:model.live="searchestado">
         <option>ESTADO</option>
         <option value="ASIG">ASIGNADO</option>

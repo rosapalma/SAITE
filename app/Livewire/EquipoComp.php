@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Equipo;
+use App\Models\Ubicacion;
 
 class EquipoComp extends Component
 {
@@ -12,26 +13,31 @@ class EquipoComp extends Component
     #[Url] // Mantiene el filtro en la barra de direcciones
     public $searchserialbienes = '',$searchestado = '';
     #[Url]
-    public $equipo_id, $marca, $serial, $serial_BN, $estado;
+    public $equipo_id, $marca_modelo, $ubicacion_id, $serial, $serial_BN, $estado, $ubicacions, $fecha_asig, $fecha_adq;
     public $isOpen = false, $isOpenShow = false;  // Controla la visibilidad de modals
 
 
      // Resetea la página al escribir para no quedar "atrapado" en una página vacía
     public function updatingSearch() { $this->resetPage(); }
 
+    function mount(){
+            $this->ubicacions = Ubicacion::all();
+        }
 
     public function render()
     {
         return view('livewire.equipo-comp', [
             'equipos' => Equipo::query()
                 ->when($this->searchserialbienes, function($query){
-                    $query->where('serial_BN', 'like', '%'. $this->searchserialbienes);
+                    $query->where('serial_BN', 'like', '%'. $this->searchserialbienes)->orWhere('serial', 'like', '%'. $this->searchserialbienes);
                  })
+               
                 ->when($this->searchestado, function($query) {
                     $query->where('estado', $this->searchestado);
                 })
                 ->paginate(10)
         ]);
+
     }
 
     public function clearFilters()
@@ -45,7 +51,7 @@ class EquipoComp extends Component
         $this->isOpenShow = true; 
         $equipo = Equipo::findOrFail($id);
         $this->equipo_id = $id;
-        $this->marca = $equipo->marca;
+        $this->marca_modelo = $equipo->marca_modelo;
         $this->serial = $equipo->serial;
         $this->serial_BN = $equipo->serial_BN;
         $this->estado = $equipo->estado;
@@ -58,17 +64,21 @@ class EquipoComp extends Component
     public function store()
     {
         $this->validate([
-            'marca' => 'required',
-            'serial'=> 'required',
-            'serial_BN' => 'required',
-            'estado' => 'required',
+            'marca_modelo' => 'required',
+            //'serial'=> 'required',
+            //'serial_BN' => 'required',
+            'ubicacion_id' =>'required',
+            'serial_BN' => 'required_without:serial',
+            'serial' => 'required_without:serial_BN',
 
         ]);
         Equipo::updateOrCreate(['id' => $this->equipo_id], [
-            'marca' => $this->marca,
+            'marca_modelo' => $this->marca_modelo,
             'serial'=> $this->serial,
             'serial_BN' => $this->serial_BN,
-            'estado' => $this->estado
+            'ubicacion_id' =>$this->ubicacion_id,
+            'fecha_adq'=> $this->fecha_adq,
+            'estado' => 'STOP',
         ]);
 
         session()->flash('message', $this->equipo_id ? 'Registro actualizado.' : 'Registro creado.');
@@ -80,7 +90,7 @@ class EquipoComp extends Component
     {
         $equipo = Equipo::findOrFail($id);
         $this->equipo_id = $id;
-        $this->marca = $equipo->marca;
+        $this->marca_modelo = $equipo->marca_modelo;
         $this->serial = $equipo->serial;
         $this->serial_BN = $equipo->serial_BN;
         $this->estado = $equipo->estado;
@@ -99,10 +109,11 @@ class EquipoComp extends Component
 
     public function resetInputFields()
     {
-        $this->marca='';
+        $this->marca_modelo='';
         $this->serial ='';
         $this->serial_bienes= '';
         $this->estado ='';
+        $this->ubicacion_id = '';
     }
 
 }

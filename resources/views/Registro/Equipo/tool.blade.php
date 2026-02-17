@@ -11,7 +11,7 @@
   <tbody>
     @foreach ($equipos as $eq )
       <tr align="center" >
-        <td><b>{{$eq->marca}}</b></td>
+        <td><b>{{$eq->marca_modelo}}</b></td>
         <td>{{$eq->serial}}</td>
         <td>{{ $eq->serial_BN}}</td>
         <td>{{$eq->estado}}</td>

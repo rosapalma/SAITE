@@ -13,17 +13,18 @@ class ResponsableSeeder extends Seeder
      */
     public function run(): void
     {
-        //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
             DB::table('responsables')->truncate();
-        //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
             
 
         DB::table('responsables')->insert(
-            ['personal_id' => 1,'equipo_id' => 1,'fecha_asig'=>'2014-05-05'],
-        );
-        DB::table('responsables')->insert(
-            ['personal_id' => 1,'equipo_id' => 2,'fecha_asig'=>'2014-05-06'],
-        );
+            ['cedula'=>17708149,
+            'full_name' => 'ROSA VIRGINIA PALMA BRAVO',
+            'email'=> 'virginia.palma.ipm@upel.edu.ve',
+            'departamento_id' => 1,
+            'ubicacion_id'=>1], 
+            );
 
 
     }

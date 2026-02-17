@@ -11,6 +11,6 @@ class Departamento extends Model
 
     public function empleados() 
     {
-        return $this->hasMany(Personal::class);
+        return $this->hasMany(Responsable::class);
     }
 }
