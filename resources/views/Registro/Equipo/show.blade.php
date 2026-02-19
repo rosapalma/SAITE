@@ -9,15 +9,13 @@
 	    	<p>Serial: {{$serial}}</p>	
 	    	<p>Serian BN: {{$serial_BN}}</p>
 	    	<p>Ubicacion: {{$ubicacion_id}}</p>
-	    	@if($responsable)
+	    	
+		  	<p>Estado: {{$estado}}</p>
+		   	<p>Fecha de Adquisicion: {{$fecha_adq}}</p>
+		   	@if($responsable)
 		   		<p>Responsable: {{$responsable}}</p>
 		    	<p>Fecha de asignacion: {{$fecha_asig}}</p>
 		   	@endif
-		  	<p>Estado: {{$estado}}</p>
-		   	<p>Fecha de Adquisicion: {{$fecha_adq}}</p>
-		   	@if ($responsable)
-				<h3>  Responsable: {{$responsable}}</h3>
-			@endif
 		</div>
 		<div class="p-4 bg-gray-50 flex justify-end">
             <button type="button" wire:click="closeModal()" class="btn btn-danger">Cerrar</button>

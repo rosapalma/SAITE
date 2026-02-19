@@ -56,7 +56,9 @@
 		            <option value="">Seleccione</option>
 		            <option value="STOP">STOP</option>
 		    	    <option value="DESIN">DESINCORPORADO</option>
-		    	    <option value="ASIG">ASIGNADO</option>
+		    	    @if ($editar)
+		    	    	<option value="ASIG">ASIGNADO</option>
+		    	    @endif
 		    	</select>
 		    </div>
 		    <br>
