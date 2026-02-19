@@ -20,7 +20,7 @@ class EquipoSeeder extends Seeder
             
         DB::table('equipos')->insert(
         [
-            'tipo'=>'COMPUTADORA',
+            'tipo'=>'CPU',
             'marca_modelo'=>'HP',
             'serial'=>'111111',
             'serial_BN' => '000111',

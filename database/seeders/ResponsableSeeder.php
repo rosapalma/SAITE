@@ -21,7 +21,8 @@ class ResponsableSeeder extends Seeder
         DB::table('responsables')->insert(
             ['cedula'=>17708149,
             'full_name' => 'ROSA VIRGINIA PALMA BRAVO',
-            'email'=> 'virginia.palma.ipm@upel.edu.ve'], 
+            'email'=> 'virginia.palma.ipm@upel.edu.ve',
+            'ubicacion_id'=> 1,], 
             );
 
 

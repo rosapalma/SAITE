@@ -17,10 +17,12 @@ class Equipo extends Model
 
     }
     
-     public function ubicacion()
+    public function ubicacion()
     {
         return $this->belongsTo(Ubicacion::class);
     }
+
+  
 
 }
 

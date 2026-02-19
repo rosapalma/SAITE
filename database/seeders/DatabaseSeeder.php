@@ -24,8 +24,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
            DepartamentoSeeder::class, 
-
-           //PersonalSeeder::class, 
            UbicacionesSeeder::class,             
            ResponsableSeeder::class,
            EquipoSeeder::class,

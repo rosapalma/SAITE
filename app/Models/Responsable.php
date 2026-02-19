@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Responsable extends Model
 {
     protected $table = 'responsables';
-    protected $fillable = ['cedula','full_name','email' ];
+    protected $fillable = ['cedula','full_name','email','cargo','ubicacion_id'];
     protected $primaryKey = 'id';
 
     public function departamento() 
@@ -15,7 +15,7 @@ class Responsable extends Model
         return $this->belongsTo(Departamento::class);
     }
 
-    public function equipo()
+    public function equipos()
     {
         return $this->hasMany(Equipo::class);
     }

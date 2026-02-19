@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Equipo;
 use App\Models\Ubicacion;
+use App\Models\Responsable;
 
 class EquipoComp extends Component
 {
@@ -13,8 +14,8 @@ class EquipoComp extends Component
     #[Url] // Mantiene el filtro en la barra de direcciones
     public $searchserialbienes = '',$searchestado = '', $ubicacions;
     #[Url]
-    public $equipo_id, $tipo, $marca_modelo, $serial, $serial_BN, $estado, $ubicacion_id, $fecha_asig, $fecha_adq, $responsable;
-    public $isOpen = false, $isOpenShow = false;  // Controla la visibilidad de modals
+    public $equipo_id, $responsable_id, $tipo, $marca_modelo, $serial, $serial_BN, $estado, $ubicacion_id, $fecha_asig, $fecha_adq, $responsable;
+    public $editar = false, $isOpen = false, $isOpenShow = false;  // Controla la visibilidad de modals
 
 
      // Resetea la página al escribir para no quedar "atrapado" en una página vacía
@@ -51,8 +52,8 @@ class EquipoComp extends Component
         $this->isOpenShow = true; 
         $equipo = Equipo::findOrFail($id);
         if($equipo){
-
             $this->equipo_id = $id;
+            $this->tipo= $equipo->tipo;
             $this->marca_modelo = $equipo->marca_modelo;
             $this->serial = $equipo->serial;
             $this->serial_BN = $equipo->serial_BN;
@@ -70,6 +71,26 @@ class EquipoComp extends Component
         $this->openModal();
     }
     
+    public function edit($id)
+    {
+        $this->editar = true;
+        $equipo = Equipo::findOrFail($id);
+        
+        $this->equipo_id = $id;
+        $this->tipo= $equipo->tipo;
+        $this->marca_modelo = $equipo->marca_modelo;
+        $this->serial = $equipo->serial;
+        $this->serial_BN = $equipo->serial_BN;
+        $this->estado = $equipo->estado;
+        $this->ubicacion_id = $equipo->ubicacion_id;
+        if ($equipo->responsable){
+             $this->responsable=$equipo->responsable['full_name'];
+        }
+       
+        $this->fecha_adq = $equipo->fecha_adq;
+        $this->openModal();
+    }
+
     public function store()
     {
         $this->validate([
@@ -87,24 +108,33 @@ class EquipoComp extends Component
             'serial_BN' => $this->serial_BN,
             'ubicacion_id' =>$this->ubicacion_id,
             'fecha_adq'=> $this->fecha_adq,
-            'estado' => 'STOP',
+            'estado'=> $this->estado,
         ]);
+        if ($this->responsable_id)
+        {
+            $Tochange=Equipo::where('id','=',$this->equipo_id)->first();
+            $Tochange->update([
+                'responsable_id'=> null,
+                'estado' => 'STOP',
+                ]);
+                $Tochange->save();                      
+        }
+        if ($this->estado == 'DESIN')
+        {
+            $desinc=Equipo::where('id','=',$this->equipo_id)->first();
+            $desinc->update([
+                'responsable_id'=> null,
+                ]);
+                $desinc->save();                      
+        }
+       
 
         session()->flash('message', $this->equipo_id ? 'Registro actualizado.' : 'Registro creado.');
         $this->closeModal();
         $this->resetInputFields();
     }
 
-    public function edit($id)
-    {
-        $equipo = Equipo::findOrFail($id);
-        $this->equipo_id = $id;
-        $this->marca_modelo = $equipo->marca_modelo;
-        $this->serial = $equipo->serial;
-        $this->serial_BN = $equipo->serial_BN;
-        $this->estado = $equipo->estado;
-        $this->openModal();
-    }
+  
 
     // public function delete($id)
     // {
@@ -123,6 +153,8 @@ class EquipoComp extends Component
         $this->serial_bienes= '';
         $this->estado ='';
         $this->ubicacion_id = '';
+        $this->responsable_id ='';
+        $this->responsable ='';
     }
 
 }

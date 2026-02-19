@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('responsables', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
+            $table->string('cargo')->nullable();
             $table->string('full_name');
             $table->integer('cedula');
             $table->string('email');
+            $table->unsignedBigInteger('ubicacion_id')->nullable();
             $table->timestamps();
+            $table->foreign('ubicacion_id')->references('id')->on('ubicacions');
+            
         });
     }
 

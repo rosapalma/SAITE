@@ -19,22 +19,20 @@
 			        <label>Correo Institucional</label>
 			        <input type="email" wire:model.live="email">
 			    </div>
-			    <div>
-                    <label>Dependencia</label>
-    			    <select wire:model.live="ubicacion_id" required>
-       	         	    <option value="">Seleccione</option>
-       	         	    @foreach ($ubicacions as $dp)
-    				    	<option value="{{$dp->id}}">{{$dp->name}}</option>
-    				    @endforeach
-    				    </select>
-                    </div>
-                    <div>
-                    	<input type="date" id="start" name="fecha_asig" value="2018-07-22" />fecha de asignacion
-                    </div>
-                    <div class="p-4 bg-gray-50 flex justify-end">
+			    
+			    	<div>
+            <label>Dependencia</label>
+    	    <select wire:model.live="ubicacion_id" required>
+       	   	    <option value="">Seleccione</option>
+       	   	    @foreach ($ubicacions as $dp)
+    		    	<option value="{{$dp->id}}">{{$dp->name}}</option>
+    			    @endforeach
+    		</select>
+          </div> 
+                <div class="p-4 bg-gray-50 flex justify-end">
                         <button type="button" wire:click="closenew()" class="btn btn-danger">Cancelar</button>
                         <button type="submit" class="btn btn-success"> Guardar</button>
-                    </div>
+                   </div>
                 </form>
             </div>
 </div>

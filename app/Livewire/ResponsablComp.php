@@ -11,9 +11,9 @@ use Hash;
 class ResponsablComp extends Component
 {
     public  $ubicacion_id, $cedula,$full_name,$email, $responsable_id ;
-    public $equipo_id, $marca_modelo, $serial, $serial_BN, $estado, $fecha_asig;
+    public $equipo_id, $marca_modelo, $serial, $serial_BN, $estado, $fecha_asig, $yaResp;
     public $new=false, $ver=false;
-    public $responsable, $Dataequipo, $AsigEqui, $ubicacions;
+    public $responsable, $Dataequipo, $AsigEqui, $ubicacions; 
 
 
     function mount(){
@@ -50,14 +50,14 @@ class ResponsablComp extends Component
             'full_name' => 'required',
             'cedula' => 'required',
             'email'=> 'required | email',
-            'ubicacion_id' => 'required', //DEPENDENCIA
+            'ubicacion_id'=> 'required',
 
         ]);
         responsable::Create([
             'full_name' => $this->full_name,
             'cedula' => $this->cedula,
             'email'=> $this->email,
-            'ubicacion_id' => $this->ubicacion_id,
+            'ubicacion_id'=> $this->ubicacion_id,
         ]);
         $this->CreateUser();
         session()->flash('message', 'Datos Guardado con exito.');
@@ -82,13 +82,14 @@ class ResponsablComp extends Component
         $this->Dataequipo = $Dataequipo;
         foreach ($Dataequipo as $key => $value) {
             $this->equipo_id= $value->id;
-        }      
-        $Dataequipo = Equipo::where('serial_BN', '=', $this->serial_BN)->orWhere('serial', '=', $this->serial_BN)->get();
-        
-        $this->Dataequipo = $Dataequipo;
-        foreach ($Dataequipo as $key => $value) {
-                $this->equipo_id= $value->id;
-        }
+            if($value->responsable_id){
+                $this->yaResp='ya tiene responsable' ;
+                $this->serial_BN ='';
+                $this->Dataequipo ='';
+            }
+            
+        }    
+       
     }
 
     public function AsignarEquipo(){
@@ -96,20 +97,46 @@ class ResponsablComp extends Component
             'cedula' => 'required',
             'serial_BN' => 'required',
             'fecha_asig' =>'required',
+            'ubicacion_id' =>'required',
 
         ]); 
         $AsigEqui =  Equipo::where('id','=', $this->equipo_id)->first();
-                $AsigEqui->update([
-                 'responsable_id' => $this->responsable_id,
-                 'fecha_asig' => $this->fecha_asig,
-                 'estado' => 'ASIG',
-                // 'ubicacion_id'=> 
-
-                ]);
-                $AsigEqui->save();      
+        $AsigEqui->update([
+            'responsable_id' => $this->responsable_id,
+            'fecha_asig' => $this->fecha_asig,
+            'estado' => 'ASIG',
+            'ubicacion_id' =>$this->ubicacion_id,
+            ]);
+            $AsigEqui->save();
+//QUIERO ACTUALIZAR EL CAMPO UBICACION_ID DE LA DB RESPONSABLES
+        $this->UpdateResp()     ;
         $this->resetInputFields();
         $this->close();
         session()->flash('message','Equipo Asignado');
+    }
+    public function UpdateResp(){
+        $UpdateResp =  Responsable::where('id','=', $this->responsable_id)->first();
+        $this->UpdateResp = 'ub = '.$this->ubicacion_id;
+        $UpdateResp->update([
+             'ubicacion_id' =>$this->ubicacion_id,
+            ]);
+            $UpdateResp->save(); 
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    public function ViewNew(){
+        $this->new= true;
     }
 
     public function close(){
