@@ -1,8 +1,7 @@
 <div>
-   <button type="button" wire:click="" aling="center" class="btn btn-primary">
-       Nuevo 
+   <button type="button" wire:click="create()" aling="center" class="btn btn-primary">
+         Nuevo 
     </button><br>
-   @include ('Registro.Usuarios.filtrar') <!-- BUSCAR  vista filtrar-->
     
    
    @if (session('message')) <!-- ACA EL MENSJ DE REGISTRO INSERTADO-->
@@ -12,6 +11,11 @@
 
    @include('Registro.Usuarios.tool') <!-- ACA SE MUESTRA LA TABLA vista tool-->
 
-
+    @if($isOpen)
+            @include ('Registro.Usuarios.modal') <!-- modal, para registra nuevo o editar -->
+        @endif
+    @if($isOpenShow)
+        @include ('Registro.Usuarios.show') <!-- modal, para registra nuevo o editar -->
+    @endif
    
 </div>

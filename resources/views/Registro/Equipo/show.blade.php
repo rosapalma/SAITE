@@ -16,6 +16,11 @@
 		   		<p>Responsable: {{$responsable}}</p>
 		    	<p>Fecha de asignacion: {{$fecha_asig}}</p>
 		   	@endif
+<<<<<<< HEAD
+=======
+		  	<p>Estado: {{$estado}}</p>
+		   	<p>Fecha de Adquisicion: {{$fecha_adq}}</p>
+>>>>>>> UserSoporte
 		</div>
 		<div class="p-4 bg-gray-50 flex justify-end">
             <button type="button" wire:click="closeModal()" class="btn btn-danger">Cerrar</button>

@@ -21,9 +21,9 @@
        	   	    <option value="">Seleccione</option>
        	   	    @foreach ($ubicacions as $dp)
     		    	<option value="{{$dp->id}}">{{$dp->name}}</option>
-    			    @endforeach
+    			  @endforeach
     		</select>
-          </div>  
+         </div>  
 	         <button type="submit" class="btn btn-success" wire:click="AsignarEquipo"> Asignar</button>
 	@endforeach
 

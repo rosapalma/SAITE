@@ -71,7 +71,7 @@ class ResponsablComp extends Component
             'responsable_id' => $responsable->id,
             'email' =>$this->email,
             'password'=>Hash::make($this->cedula),
-            'privilege' => 3,
+            'privilege' => 4,
         ]);
     }
 

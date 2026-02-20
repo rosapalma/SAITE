@@ -51,20 +51,22 @@ class EquipoComp extends Component
     {
         $this->isOpenShow = true; 
         $equipo = Equipo::findOrFail($id);
-        if($equipo){
-            $this->equipo_id = $id;
-            $this->tipo= $equipo->tipo;
-            $this->marca_modelo = $equipo->marca_modelo;
-            $this->serial = $equipo->serial;
-            $this->serial_BN = $equipo->serial_BN;
-            $this->ubicacion_id = $equipo->ubicacion['name'];
-            if ($equipo->responsable){
-                $this->responsable=$equipo->responsable['full_name'];
-            }
+        $this->equipo_id = $id;
+        $this->tipo= $equipo->tipo;
+        $this->marca_modelo = $equipo->marca_modelo;
+        $this->serial = $equipo->serial;
+        $this->serial_BN = $equipo->serial_BN;
+        $this->ubicacion_id = $equipo->ubicacion['name'];
+        $this->fecha_adq = $equipo->fecha_adq;
+        $this->estado = $equipo->estado;
+        if ($equipo->responsable){
+            $this->responsable=$equipo->responsable['full_name'];
             $this->fecha_asig = $equipo->fecha_asig;
-            $this->estado = $equipo->estado;
-            $this->fecha_adq = $equipo->fecha_adq;
         }
+        
+       
+        
+      
     }
     public function create(){
         $this->resetInputFields();
