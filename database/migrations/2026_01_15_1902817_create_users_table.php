@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->integer('privilege');
+            $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
 
             $table->foreign('responsable_id')->references('id')->on('responsables');

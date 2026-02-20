@@ -1,3 +1,0 @@
-
-  Buscar por: "view filtrar" 
-   
