@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('tipo')->nullable();
+
+            $table->string('serial_BN')->nullable();
+            $table->unsignedBigInteger('tipo_id')->nullable();
             $table->string('marca_modelo')->nullable();
             $table->string('serial')->nullable();
-            $table->string('serial_BN')->nullable();
             $table->unsignedBigInteger('ubicacion_id')->nullable();
             $table->unsignedBigInteger('responsable_id')->nullable(); 
             $table->string('estado')->nullable(); 
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->date('fecha_adq')->nullable();
             $table->timestamps();
 
+            $table->foreign('tipo_id')->references('id')->on('tipos');
             $table->foreign('ubicacion_id')->references('id')->on('ubicacions');
 
             $table->foreign('responsable_id')->references('id')->on('responsables');

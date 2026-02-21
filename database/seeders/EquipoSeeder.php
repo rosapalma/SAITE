@@ -20,7 +20,7 @@ class EquipoSeeder extends Seeder
             
         DB::table('equipos')->insert(
         [
-            'tipo'=>'CPU',
+            'tipo_id'=>1,
             'marca_modelo'=>'HP',
             'serial'=>'111111',
             'serial_BN' => '000111',
@@ -34,7 +34,7 @@ class EquipoSeeder extends Seeder
         );
         DB::table('equipos')->insert(
         [
-            'tipo'=>'REGULADOR',
+            'tipo_id'=>2,
             'marca_modelo'=>'FORZA',
             'ubicacion_id'=>1,
             'fecha_adq'=>'2014-05-05',
@@ -44,8 +44,8 @@ class EquipoSeeder extends Seeder
         );
         DB::table('equipos')->insert(
         [
-            'tipo'=>'COMPONENTE',
-            'marca_modelo'=>'MOUSE GENIU',
+            'tipo_id'=>3,
+            'marca_modelo'=>'MONITOR DELL',
             'fecha_adq'=>'2014-05-05',
             'ubicacion_id'=>5,
             'serial'=>'111113',

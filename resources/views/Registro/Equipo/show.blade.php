@@ -5,6 +5,11 @@
         <div class="p-6">
             <h2 class="text-lg font-bold mb-4"> Detalles de Equipo </h2>
 	    <div>
+	    	<p>Tipo: @foreach ($tipos as $t )  
+			    		@if ($t->id == $equipo_id)
+			    			{{$t->name}}
+			    		@endif
+			    	 @endforeach
 	    	<p>Marca|Modelo: {{$marca_modelo}}</p>
 	    	<p>Serial: {{$serial}}</p>	
 	    	<p>Serian BN: {{$serial_BN}}</p>
@@ -16,11 +21,10 @@
 		   		<p>Responsable: {{$responsable}}</p>
 		    	<p>Fecha de asignacion: {{$fecha_asig}}</p>
 		   	@endif
-<<<<<<< HEAD
-=======
+
 		  	<p>Estado: {{$estado}}</p>
 		   	<p>Fecha de Adquisicion: {{$fecha_adq}}</p>
->>>>>>> UserSoporte
+
 		</div>
 		<div class="p-4 bg-gray-50 flex justify-end">
             <button type="button" wire:click="closeModal()" class="btn btn-danger">Cerrar</button>

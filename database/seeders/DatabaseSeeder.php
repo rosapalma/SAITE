@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([ 
+           TipoSeeder::class,
            UbicacionesSeeder::class,             
            ResponsableSeeder::class,
            EquipoSeeder::class,

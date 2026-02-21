@@ -10,14 +10,12 @@
 		    <div>
 		    <div>
 		    	<label>Tipo</label>
-		        <select wire:model.live="tipo" >
-		            <option value="">Seleccione</option>
-		    	    <option value="CPU">CPU</option>
-		    	    <option value="MONITOR">MONITOR</option>
-		    		<option value="PERIFERICO">PERIFERICO</option>
-		    		<option value="REGULADOR">REGULADOR</option>
-		    		<option value="COMPONENTE">COMPONENTE</option>
-		    	</select>
+		        <select wire:model.live="tipo">
+			        <option>TIPO</option>
+			        @foreach ($tipos as $tipo)
+			        <option value="{{$tipo->id}}">{{$tipo->name}}</option>
+			        @endforeach
+		   		</select>
 	        	
 		    </div>
 		    	<label>Marca || Modelo</label>

@@ -16,6 +16,6 @@ class Ubicacion extends Model
     }
      public function responsable()
     {
-        return $this->hasOne(Eesponsable::class);
+        return $this->hasOne(Responsable::class);
     }
 }

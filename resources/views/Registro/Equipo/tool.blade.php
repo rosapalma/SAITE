@@ -1,6 +1,7 @@
 <table class="table" >
   <thead class="thead-dark">
     <tr align="center">
+      <th>Tipo</th>
       <th>MARCA</th>
       <th>SERIAL</th>
   	  <th>SERIAL DE BIENES</TH>
@@ -11,6 +12,7 @@
   <tbody>
     @foreach ($equipos as $eq )
       <tr align="center" >
+        <td>{{$eq->tipo['name']}}</td>
         <td><b>{{$eq->marca_modelo}}</b></td>
         <td>{{$eq->serial}}</td>
         <td>{{ $eq->serial_BN}}</td>

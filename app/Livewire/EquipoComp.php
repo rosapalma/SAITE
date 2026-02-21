@@ -7,12 +7,13 @@ use Livewire\WithPagination;
 use App\Models\Equipo;
 use App\Models\Ubicacion;
 use App\Models\Responsable;
+use App\Models\Tipo;
 
 class EquipoComp extends Component
 {
     use WithPagination;
     #[Url] // Mantiene el filtro en la barra de direcciones
-    public $searchserialbienes = '',$searchestado = '', $ubicacions;
+    public $searchserialbienes = '',$searchestado = '', $tipos, $ubicacions;
     #[Url]
     public $equipo_id, $responsable_id, $tipo, $marca_modelo, $serial, $serial_BN, $estado, $ubicacion_id, $fecha_asig, $fecha_adq, $responsable;
     public $editar = false, $isOpen = false, $isOpenShow = false;  // Controla la visibilidad de modals
@@ -23,6 +24,7 @@ class EquipoComp extends Component
 
     function mount(){
             $this->ubicacions = Ubicacion::all();
+             $this->tipos = Tipo::all();
         }
 
     public function render()
@@ -31,8 +33,7 @@ class EquipoComp extends Component
             'equipos' => Equipo::query()
                 ->when($this->searchserialbienes, function($query){
                     $query->where('serial_BN', 'like', '%'. $this->searchserialbienes)->orWhere('serial', 'like', '%'. $this->searchserialbienes);
-                 })
-               
+                 })              
                 ->when($this->searchestado, function($query) {
                     $query->where('estado', $this->searchestado);
                 })
@@ -59,6 +60,7 @@ class EquipoComp extends Component
         $this->ubicacion_id = $equipo->ubicacion['name'];
         $this->fecha_adq = $equipo->fecha_adq;
         $this->estado = $equipo->estado;
+        $this->tipo = $equipo->tipo;
         if ($equipo->responsable){
             $this->responsable=$equipo->responsable['full_name'];
             $this->fecha_asig = $equipo->fecha_asig;
@@ -79,7 +81,6 @@ class EquipoComp extends Component
         $equipo = Equipo::findOrFail($id);
         
         $this->equipo_id = $id;
-        $this->tipo= $equipo->tipo;
         $this->marca_modelo = $equipo->marca_modelo;
         $this->serial = $equipo->serial;
         $this->serial_BN = $equipo->serial_BN;
@@ -150,6 +151,7 @@ class EquipoComp extends Component
 
     public function resetInputFields()
     {
+        $this->tipo = '';
         $this->marca_modelo='';
         $this->serial ='';
         $this->serial_bienes= '';

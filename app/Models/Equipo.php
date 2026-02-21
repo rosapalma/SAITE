@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Equipo extends Model
 {
     protected $table = 'equipos';
-    protected $fillable = [ 'tipo','marca_modelo','ubicacion_id','serial','serial_BN','responsable_id','estado','fecha_asig','fecha_adq' ];
+    protected $fillable = [ 'tipo_id','marca_modelo','ubicacion_id','serial','serial_BN','responsable_id','estado','fecha_asig','fecha_adq' ];
 
     protected $primaryKey = 'id';
 
@@ -20,6 +20,11 @@ class Equipo extends Model
     public function ubicacion()
     {
         return $this->belongsTo(Ubicacion::class);
+    }
+
+    public function tipo()
+    {
+        return $this->belongsTo(Tipo::class);
     }
 
   
