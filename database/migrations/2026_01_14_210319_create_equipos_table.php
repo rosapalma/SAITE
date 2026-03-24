@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
-
-            $table->string('serial_BN')->nullable();
+            $table->bigIncrements('id');            
             $table->unsignedBigInteger('tipo_id')->nullable();
-            $table->string('marca_modelo')->nullable();
+            //$table->string('marca_modelo')->nullable();
+            $table->string('marca')->nullable();
+            $table->string('modelo')->nullable();
             $table->string('serial')->nullable();
+            $table->string('serial_BN')->nullable();
             $table->unsignedBigInteger('ubicacion_id')->nullable();
             $table->unsignedBigInteger('responsable_id')->nullable(); 
             $table->string('estado')->nullable(); 

@@ -1,6 +1,8 @@
-<?php echo strtoupper (Auth::user()->responsable['full_name']);?>
-<br><br><br>
-	@if (session('message')) <!-- ACA EL MENSJ DE REGISTRO INSERTADO-->
+ <?php echo strtoupper (Auth::user()->responsable['full_name']);?>
+
+ <h1 class="title">EN DESARROLLO.........</h1>
+<!--<br><br><br>
+	@if (session('message')) 
         <h1 align="center" class="">      {{ session('message') }}   
         </h1>
     @endif
@@ -12,8 +14,8 @@
 	</li>
 	
 	
-	<br>
-@endforeach
+	<br> 
+@endforeach-->
 @if($isOpenShow)
     @include ('Servicio.modal') <!-- modal, para registra nuevo o editar -->
 @endif

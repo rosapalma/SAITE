@@ -15,7 +15,7 @@ class EquipoComp extends Component
     #[Url] // Mantiene el filtro en la barra de direcciones
     public $searchserialbienes = '',$searchestado = '', $tipos, $ubicacions;
     #[Url]
-    public $equipo_id, $responsable_id, $tipo, $marca_modelo, $serial, $serial_BN, $estado, $ubicacion_id, $fecha_asig, $fecha_adq, $responsable;
+    public $equipo_id, $responsable_id, $tipo, $marca_modelo, $marca, $modelo, $serial, $serial_BN, $estado, $ubicacion_id, $fecha_asig, $fecha_adq, $responsable;
     public $editar = false, $isOpen = false, $isOpenShow = false;  // Controla la visibilidad de modals
 
 
@@ -24,11 +24,12 @@ class EquipoComp extends Component
 
     function mount(){
             $this->ubicacions = Ubicacion::all();
-             $this->tipos = Tipo::all();
+            $this->tipos = Tipo::all();
         }
 
     public function render()
     {
+
         return view('livewire.equipo-comp', [
             'equipos' => Equipo::query()
                 ->when($this->searchserialbienes, function($query){
@@ -53,8 +54,10 @@ class EquipoComp extends Component
         $this->isOpenShow = true; 
         $equipo = Equipo::findOrFail($id);
         $this->equipo_id = $id;
-        $this->tipo= $equipo->tipo;
-        $this->marca_modelo = $equipo->marca_modelo;
+        $this->tipo= $equipo->tipo['name'];
+       // $this->marca_modelo = $equipo->marca_modelo;
+        $this->marca = $equipo->marca;
+        $this->modelo = $equipo->modelo;
         $this->serial = $equipo->serial;
         $this->serial_BN = $equipo->serial_BN;
         $this->ubicacion_id = $equipo->ubicacion['name'];
@@ -81,7 +84,9 @@ class EquipoComp extends Component
         $equipo = Equipo::findOrFail($id);
         
         $this->equipo_id = $id;
-        $this->marca_modelo = $equipo->marca_modelo;
+        $this->tipo = $equipo->tipo['name'];
+        $this->marca = $equipo->marca;
+        $this->modelo = $equipo->modelo;
         $this->serial = $equipo->serial;
         $this->serial_BN = $equipo->serial_BN;
         $this->estado = $equipo->estado;
@@ -98,7 +103,7 @@ class EquipoComp extends Component
     {
         $this->validate([
             'tipo'=>'required',
-            'marca_modelo' => 'required',            
+            //'marca_modelo' => 'required',            
             'serial_BN' => 'required_without:serial',
             'serial' => 'required_without:serial_BN',
             'ubicacion_id' =>'required',
@@ -106,7 +111,9 @@ class EquipoComp extends Component
         ]);
         Equipo::updateOrCreate(['id' => $this->equipo_id], [
             'tipo'=> $this->tipo,
-            'marca_modelo' => $this->marca_modelo,
+            //'marca_modelo' => $this->marca_modelo,
+            'marca' => $this->marca,
+            'modelo' => $this->modelo,
             'serial'=> $this->serial,
             'serial_BN' => $this->serial_BN,
             'ubicacion_id' =>$this->ubicacion_id,
@@ -118,11 +125,11 @@ class EquipoComp extends Component
             $Tochange=Equipo::where('id','=',$this->equipo_id)->first();
             $Tochange->update([
                 'responsable_id'=> null,
-                'estado' => 'STOP',
+                'estado' => 'OPR',
                 ]);
                 $Tochange->save();                      
         }
-        if ($this->estado == 'DESIN')
+        if ($this->estado == 'DESINC')
         {
             $desinc=Equipo::where('id','=',$this->equipo_id)->first();
             $desinc->update([
@@ -153,6 +160,8 @@ class EquipoComp extends Component
     {
         $this->tipo = '';
         $this->marca_modelo='';
+        $this->marca= '';
+        $this->modelo ='';
         $this->serial ='';
         $this->serial_bienes= '';
         $this->estado ='';

@@ -3,13 +3,10 @@
      <input wire:model.live="searchserialbienes" type="text" placeholder="SERIAL"> 
     <select wire:model.live="searchestado">
         <option>ESTADO</option>
-        <option value="ASIG">ASIGNADO</option>
-        <option value="STOP">STOP</option>
-        <option value="DESIN">DESINCORPORADO</option>
+        <!-- <option value="1">---TODOS--</option> -->
+        <option value="MANT">EN MANTENIMIENTO</option>
+        <option value="DESINC">DESINCORPORADO</option>
+        <option value="OPR">OPERATIVO</option>
     </select>
 
-    @if($searchserialbienes || $searchestado)
-        <button type="button" wire:click="clearFilters" class="btn-warning">
-            Limpiar
-        </button>
-    @endif
+   

@@ -3,71 +3,78 @@
 <div class="fixed inset-0 flex items-center justify-center z-50">
     <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full z-50">
+    	<img src="{{asset('images/ICONS/close.png')}}" wire:click="closeModal()" width="30" style=" float: right;cursor: pointer;" >
 		<x-validation-errors class="mb-4" />
 	    <form wire:submit.prevent="store">
 	        <div class="p-6">
-	            <h2 class="text-lg font-bold mb-4">{{ $equipo_id ? 'Editar Registro de Equipo' : 'Registrar Nuevo Equipo' }}</h2>
+	            <h2 class="text-lg font-bold mb-4 title">{{ $equipo_id ? 'EDITAR REGISTRO DE EQUIPO' : 'REGISTRO DE EQUIPO' }}</h2>
 		    <div>
 		    <div>
-		    	<label>Tipo</label>
-		        <select wire:model.live="tipo">
-			        <option>TIPO</option>
+		    	<label class="label-blue form-label m-0">TIPO DE EQUIPO</label>
+		        <select wire:model.live="tipo" class="form-control">
+			        <option>Seleccione</option>
+			        <!--	mostrar el tipo de equipo si es editar-->
 			        @foreach ($tipos as $tipo)
 			        <option value="{{$tipo->id}}">{{$tipo->name}}</option>
 			        @endforeach
-		   		</select>
-	        	
+		   		</select>	        	
 		    </div>
-		    	<label>Marca || Modelo</label>
+		  <!--   <div>
+		    	<label>MARCA || Modelo</label>
 		    	<input type="text" wire:model.live="marca_modelo">
-		    </div>     
-		    <div>
-				<label>Serial</label>
-				<input type="text" wire:model.live="serial" wire:model.live="serial">
+		    </div>  -->
+			<div style="display: flex;">
+			     <div>
+			    	<input type="text" wire:model.live="marca" placeholder="MARCA" class="form-control">
+			    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			     <div>
+			    	<input type="text" wire:model.live="modelo" placeholder="MODELO" class="form-control">
+			    </div>
 			</div>
+		   	<div style="display: flex;" >   
+			    <div>
+					<input type="text" wire:model.live="serial" placeholder="SERIAL" class="form-control">
+				</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<div>
+				   	<input type="text" wire:model.live="serial_BN" placeholder="SERIAL BN" class="form-control">
+				</div>
+			</div><br>
 			<div>
-			   	<label>Serial de Bienes </label>
-			   	<input type="text" wire:model.live="serial_BN">
-			</div>
-			<div>
-			    <label>Ubicación</label>
-	    	    <select wire:model.live="ubicacion_id" required>
-	        	    <option value="">Seleccione</option>
-	        	    @foreach ($ubicacions as $dp)
-	    			    <option value="{{$dp->id}}">{{$dp->name}}</option>
-	    		    @endforeach
-	    		</select>
-	    	</div>
-	    	<div>
-	    		Fecha de Adquisición:
-	    		@if ($editar)
-				 
-					<input type="date" wire:model.live="fecha_adq" disabled>
+		    	<label class="label-blue">Fecha de Adquisición:</label>
+		    	@if ($editar)				 
+					<input type="date" wire:model.live="fecha_adq" disabled class="form-control">
 				@else
-					<input type="date" wire:model.live="fecha_adq">
+					<input type="date" wire:model.live="fecha_adq" class="form-control">
 				@endif
 
-			</div> 
+			</div><br>
+
 			<div>
-	    	    <label>Estado</label>
-		        <select wire:model.live="estado" >
-		            <option value="">Seleccione</option>
-		            <option value="STOP">STOP</option>
-		    	    <option value="DESIN">DESINCORPORADO</option>
-		    	    @if ($editar)
-		    	    	<option value="ASIG">ASIGNADO</option>
-		    	    @endif
+			    <label class="label-blue form-label m-0">UBICACIÓN</label>
+		        <select wire:model.live="ubicacion_id" required class="form-control">
+		       	    <option value="">Seleccione</option>
+		       	    @foreach ($ubicacions as $dp)
+		    		    <option value="{{$dp->id}}">{{$dp->name}}</option>
+		    	    @endforeach
 		    	</select>
-		    </div>
-		    <br>
-			@if ($responsable)
-				<h3>  Responsable: {{$responsable}}</h3>
-				Quitar<input type="checkbox" wire:model.live="responsable_id">
-			@endif    
-			<div class="p-4 bg-gray-50 flex justify-end">
-				<button type="button" wire:click="closeModal()" class="btn btn-danger">Cancelar</button>
-				<button type="submit" class="btn btn-success"> Guardar</button>
+		    </div><br>
+		    <div>
+		        <label class="label-blue form-label m-0">ESTADO</label>
+			    <select wire:model.live="estado" class="form-control">
+			        <option value="">Seleccione</option>
+			        <option value="MANT">EN MANTENIMIENTO</option>
+			  	    <option value="DESINC">DESINCORPORADO</option>
+			  	    <option value="OPR">OPERATIVO</option>
+			   	</select>
 			</div>
+			<br>
+			@if ($responsable)
+				<label class="label-blue">  RESPONSABLE: </label>&nbsp;&nbsp;<label>{{$responsable}} </label><!--EQUIPO TIENE RESPONSABLE/ESTA ASIGNADO-->
+				&nbsp;&nbsp;Quitar&nbsp;<input type="checkbox" wire:model.live="responsable_id">
+			@endif    
+			 <div class="p-4 bg-gray-50 flex justify-end">
+                <x-button> GURDAR</x-button>
+            </div>
 		</form>
 	</div>
 </div>

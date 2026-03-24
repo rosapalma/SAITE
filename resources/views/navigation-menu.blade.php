@@ -17,12 +17,12 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
+                    <x-nav-link href="" :active="request()->routeIs('')">
                          {{ __('Estado de Solicitud') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="" :active="request()->routeIs('')">
                        {{ __('Asig. Servicio') }}
                     </x-nav-link>
                 </div>
@@ -50,9 +50,9 @@
                             <x-dropdown-link href="{{ route('RegistEquipo') }}" >
                                 {{ __('Equipos') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="{{ route('RegistResponsabl') }}" >
+                           <!--  <x-dropdown-link href="{{ route('RegistResponsabl') }}" >
                                 {{ __('Asig. Equipo') }}
-                            </x-dropdown-link> 
+                            </x-dropdown-link>  -->
                               <x-dropdown-link href="{{ route('usuarios') }}" >{{ __('Usuarios') }}
                             </x-dropdown-link>                  
 

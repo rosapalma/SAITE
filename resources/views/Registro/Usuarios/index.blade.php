@@ -1,8 +1,12 @@
 <div>
-   <button type="button" wire:click="create()" aling="center" class="btn btn-primary">
-         Nuevo 
-    </button><br>
-    
+      <div style="">
+         <button  wire:click="create()" class="btn btn-success">NUEVO</h1></button>
+      </div>
+      <div style="display:flex; justify-content: flex-end">
+      <div>
+         @include ('Registro.Usuarios.filtrar')  <!--BUSCAR  vista filtrar -->
+      </div>      
+      </div>
    
    @if (session('message')) <!-- ACA EL MENSJ DE REGISTRO INSERTADO-->
         <h1 align="center" class="text-3xl font-bold underline text-red-50">      {{ session('message') }}   

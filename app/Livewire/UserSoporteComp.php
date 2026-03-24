@@ -14,7 +14,7 @@ class UserSoporteComp extends Component
 {
      use WithPagination;
 
-    public $user_id, $full_name, $cedula, $cargo, $ubicacion_id, $email, $password_confirmation, $password,$usuarios, $privilege, $ubicacions, $isOpenShow=false, $isOpen=false, $editar=false;
+    public $user_id, $full_name, $cedula, $cargo, $ubicacion_id, $email, $password_confirmation, $password,$usuarios, $privilege, $ubicacions, $isOpenShow=false, $isOpen=false, $editar=false, $shearch, $responsable_id;
    
 
     function mount(){
@@ -34,13 +34,6 @@ class UserSoporteComp extends Component
 
 
 
-
-
-
-
-
-
-
     public function Show ($id){
         $this->isOpenShow = true; 
         $user = User::findOrFail($id);
@@ -51,7 +44,6 @@ class UserSoporteComp extends Component
         $this->cargo = $user->responsable['cargo'];
         $this->ubicacion_id = $user->responsable['ubicacion_id'];
         $this->privilege = $user->privilege;
-           
     }
 
 
@@ -76,19 +68,6 @@ class UserSoporteComp extends Component
             'ubicacion_id' =>$this->ubicacion_id,
         ]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
     public  function store(){
          $this->validate([
@@ -98,7 +77,8 @@ class UserSoporteComp extends Component
         ]);
         $this->SaveResp();
         $responsable = Responsable::where('cedula','=',$this->cedula)->first();
-         User::updateOrCreate(['id' => $this->user_id], [
+        $this->responsable_id = $responsable->id;
+        User::updateOrCreate(['id' => $this->user_id], [
             'responsable_id' => $responsable->id,
             'cedula'=> $this->cedula,
             'full_name' => $this->full_name,            

@@ -7,7 +7,7 @@
     	 <div class="p-6">
                         <h2 class="text-lg font-bold mb-4">Reportar servicio</h2>
 				    <div>
-            {{$tipo}} - {{$marca_modelo}}
+            <!-- {{$tipo}} - {{$marca_modelo}} -->
         <div>
 
 		    

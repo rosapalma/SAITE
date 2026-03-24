@@ -3,9 +3,9 @@
     <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full z-50">
         <x-validation-errors class="mb-4" />
         <div class="p-6">
-            <h2 class="text-lg font-bold mb-4"> Detalles de Usuario</h2>
-        <div>
-          <p>  {{$cedula}}</p>
+            <h2 class="title text-lg font-bold mb-4">DETALLES DE USUARIO</h2>
+        <div class="show" >
+         <p >  {{$cedula}}</p>
          <p>{{$full_name}}</p>
          <p>Email: {{$email}} </p>
          <p>Privilegio: {{$privilege}}</p>

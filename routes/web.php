@@ -9,9 +9,13 @@ use App\Livewire\UserSoporteComp;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/prueba', function (){
+    return view('prueba');
 });
+Route::redirect('/','login'); //al login directament
 
 Route::middleware([
     'auth:sanctum',

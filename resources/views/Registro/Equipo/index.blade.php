@@ -1,8 +1,21 @@
 <div>
-	<button type="button" wire:click="create()" aling="center" class="btn btn-primary">
+	<!-- <button type="button" wire:click="create()" aling="center" class="btn btn-primary">
     	 Nuevo 
-    </button><br>
-	@include ('Registro.Equipo.filtrar') <!-- BUSCAR  vista filtrar-->
+    </button><br> -->
+      <div style="">
+         <button  wire:click="create()" class="btn btn-success">NUEVO</h1></button>
+      </div>
+      <div style="display:flex; justify-content: flex-end">
+      <div>
+         @include ('Registro.Equipo.filtrar') <!-- BUSCAR  vista filtrar--> 
+         @if($searchserialbienes || $searchestado)
+           <button type="button" wire:click="clearFilters" class="btn btn-warning">
+               Limpiar
+           </button>
+         @endif
+      </div>      
+      </div>
+
     
 	
 	@if (session('message')) <!-- ACA EL MENSJ DE REGISTRO INSERTADO-->

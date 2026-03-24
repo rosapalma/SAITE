@@ -3,7 +3,7 @@
     <tr align="center">
       <th>Tipo</th>
       <th>MARCA</th>
-      <th>SERIAL</th>
+      <th>MODELO</th>
   	  <th>SERIAL DE BIENES</TH>
   	  <th>ESTADO</th>
   	  <th>ACCIÓN</th>
@@ -13,8 +13,8 @@
     @foreach ($equipos as $eq )
       <tr align="center" >
         <td>{{$eq->tipo['name']}}</td>
-        <td><b>{{$eq->marca_modelo}}</b></td>
-        <td>{{$eq->serial}}</td>
+        <td><b>{{$eq->marca}}</b></td>
+        <td>{{$eq->modelo}}</td>
         <td>{{ $eq->serial_BN}}</td>
         <td>{{$eq->estado}}</td>
 
