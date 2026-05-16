@@ -16,6 +16,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('responsable_id');
             $table->unsignedBigInteger('equipo_id');
+            $table->string('codigo');
+            $table->string('tipo_falla')->nullable();
+            $table->string('asunto');
             $table->string('descripcion');
             $table->string('statud');
             $table->date('fecha');

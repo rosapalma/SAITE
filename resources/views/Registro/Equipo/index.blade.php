@@ -33,5 +33,5 @@
          @if($isOpenShow)
             @include ('Registro.Equipo.show') <!-- modal, para registra nuevo o editar -->
         @endif
-	
+	<br><br><br><br>
 </div>

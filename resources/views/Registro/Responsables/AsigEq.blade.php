@@ -5,7 +5,8 @@
 @if($Dataequipo)
 	@foreach ($Dataequipo as $eq)
 		<div>Detalles: <br>
-		   <p>Marca|Modelo: {{$eq['marca_modelo']}}</p>
+			 <p>Marca: {{$eq['marca']}}</p>
+		   <p>Modelo: {{$eq['modelo']}}</p>
 		   <p>Serial; {{$serial_BN}}</p>
 			
 
