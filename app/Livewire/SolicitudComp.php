@@ -14,15 +14,14 @@ use Hash;
 use Illuminate\Support\Carbon;
 class SolicitudComp extends Component
 {
-    public $resp_id, $equipo_id, $marca, $modelo, $tipo, $serial, $serial_BN, $descripcion, $asunto, $tipo_falla, $fecha,$equipos, $codigo, $ult;
-    public $solicits;
+    public $resp_id, $descripcion, $asunto, $tipo_falla, $fecha,$equipos, $codigo, $ult;
+    public $solicits, $opcionSeleccionada, $resultados = [];
 
     function mount(){
         $this->ult = SoliServicio::all()->last(); // ultimo nro generado
         $this->resp_id =  Auth::user()->responsable['id'];
         $this->equipos = Equipo::where('responsable_id','=',$this->resp_id)->get();
         $this->solicits = SoliServicio::where('responsable_id','=',$this->resp_id)->get();
-
     }
 
     public function render()
@@ -31,17 +30,39 @@ class SolicitudComp extends Component
     }
 
 
-   public function ver()
+
+    // Esta función se ejecuta automáticamente cuando cambia el select
+    public function updatedOpcionSeleccionada()
     {
-        $equipo = Equipo::findOrFail($this->equipo_id);
-        $this->tipo= $equipo->tipo->name; //trae la relacion
-        $this->marca= $equipo->marca;
-        $this->modelo= $equipo->modelo;
-        $this->serial= $equipo->serial;
-        $this->serial_BN=$equipo->serial_BN;
+        if (!empty($this->opcionSeleccionada)) {
+            // Realiza la consulta a la base de datos
+            $this->resultados = Equipo::where('id', $this->opcionSeleccionada)->get();
+
+        } else {
+            $this->resultados = [];
+        }
     }
 
-       
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

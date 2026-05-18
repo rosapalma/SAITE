@@ -22,7 +22,7 @@ class EquipoSeeder extends Seeder
         [
             'tipo_id'=>1,
             'marca'=>'HP',
-            'modelo'=>'MONITOR',
+            'modelo'=>'HORIZONTAL',
             'serial'=>'111111',
             'serial_BN' => '000111',
             'responsable_id'=>1, // asignada

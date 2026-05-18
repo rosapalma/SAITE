@@ -1,24 +1,35 @@
 <div>
 	<form wire:submit.prevent="Save">
-		<div style="border: 1px solid red;">
-			<p><b>TIPO DE EQUIPO:</b> {{$tipo}}</p>
-			<p><b>MARCA:</b> {{$marca}}</p>
-			<p><b>MODELO:</b> {{$modelo}}</p>
-			<P><b>SERIAL:</b> {{$serial}}</P>
-			<p><b>SERIAL BN:</b> {{$serial_BN}}</p>
-		</div>
-		<div>		
-		  <input type="radio" id="opcion1" wire:model="tipo_falla" value=1 checked>
-		  <label >HARDWARE</label>
-		  <input type="radio" id="opcion2" wire:model="tipo_falla" value=2>
-		  <label >SOFTWARE</label>
-		  <input type="radio" id="opcion2" wire:model="tipo_falla" value=3>
-		  <label >AMBAS</label>
-		</div>
+		
+	<div>
+	    <div class="mb-4">
+	        <label for="opcion">Selecciona una opción:</label>
+	        <select wire:model.live="opcionSeleccionada" class="form-control" id="opcion">
+	            <option value="">-- SELECCIONE EL EQUIPO A REPORTAR --</option>
+	            @foreach($equipos as $equipo)
+						<option value="{{$equipo->id}}"> {{$equipo->modelo}} - {{$equipo->marca}}</option>
+					@endforeach
+	        </select>
+	    </div>
 
+	    <!-- Mostrar resultados si existen -->
+	    @if(!empty($resultados) && count($resultados) > 0)
+	            @foreach($resultados as $item)
+		            <p><b>TIPO DE EQUIPO:</b> {{$item['tipo']->name}}</p>
+					<p><b>MARCA:</b> {{$item['marca']}}</p>
+					<p><b>MODELO:</b> {{$item['modelo']}}</p>
+					<P><b>SERIAL:</b> {{$item['serial']}}</P>
+					<p><b>SERIAL BN:</b> {{$item['serial_BN']}}</p>
+	            @endforeach
+	
+	    @elseif($opcionSeleccionada)
+	        <p class="mt-4 text-gray-500">No se encontraron resultados para esta selección.</p>
+	    @endif
+	</div>
+<br>
 		<div style="display: flex;">
 				<div>
-			<p>ASUNTO</p>
+			<h1>ASUNTO</h1>
 			<input type="TEXT" wire:model="asunto" required>
 		</div>
 		<div>  
@@ -30,5 +41,12 @@
 	 <div align="center">
 	 	<button type="submit" wire:click="Save" class="btn btn-success btn-lg">ENVIAR</button>
 	</div>
+
+
+
+
+
+
+
 	</form>
 </div>
