@@ -35,7 +35,7 @@ class EquipoSeeder extends Seeder
         );
         DB::table('equipos')->insert(
         [
-            'tipo_id'=>2,
+            'tipo_id'=>3,
             'marca'=>'FORZA',
             'modelo'=>'REGULADOR',
             'ubicacion_id'=>1,
@@ -46,7 +46,7 @@ class EquipoSeeder extends Seeder
         );
         DB::table('equipos')->insert(
         [
-            'tipo_id'=>3,
+            'tipo_id'=>1,
             'marca'=>'lenovo',
             'modelo'=>'PC',
             'fecha_adq'=>'2014-05-05',

@@ -58,6 +58,7 @@
 		    	    @endforeach
 		    	</select>
 		    </div><br>
+		    LISTA ACA LOS USUARIOS YA REG. PARA ASIG RESPONSABLESS
 		    <div>
 		        <label class="label-blue form-label m-0">ESTADO</label>
 			    <select wire:model.live="estado" class="form-control">

@@ -54,7 +54,7 @@ class EquipoComp extends Component
         $this->isOpenShow = true; 
         $equipo = Equipo::findOrFail($id);
         $this->equipo_id = $id;
-        $this->tipo= $equipo->tipo['name'];
+        //$this->tipo= $equipo->tipo['name'];
        // $this->marca_modelo = $equipo->marca_modelo;
         $this->marca = $equipo->marca;
         $this->modelo = $equipo->modelo;
@@ -84,7 +84,7 @@ class EquipoComp extends Component
         $equipo = Equipo::findOrFail($id);
         
         $this->equipo_id = $id;
-        $this->tipo = $equipo->tipo['name'];
+        //$this->tipo = $equipo->tipo['name'];
         $this->marca = $equipo->marca;
         $this->modelo = $equipo->modelo;
         $this->serial = $equipo->serial;
@@ -102,7 +102,7 @@ class EquipoComp extends Component
     public function store()
     {
         $this->validate([
-            'tipo'=>'required',
+            //'tipo'=>'required',
             //'marca_modelo' => 'required',            
             'serial_BN' => 'required_without:serial',
             'serial' => 'required_without:serial_BN',
@@ -110,7 +110,7 @@ class EquipoComp extends Component
             'fecha_adq'=> 'required',
         ]);
         Equipo::updateOrCreate(['id' => $this->equipo_id], [
-            'tipo'=> $this->tipo,
+            //'tipo'=> $this->tipo,
             //'marca_modelo' => $this->marca_modelo,
             'marca' => $this->marca,
             'modelo' => $this->modelo,
@@ -125,7 +125,7 @@ class EquipoComp extends Component
             $Tochange=Equipo::where('id','=',$this->equipo_id)->first();
             $Tochange->update([
                 'responsable_id'=> null,
-                'estado' => 'OPR',
+                //validar estado de equipo si esta ASIGN CAM BIA A OPR
                 ]);
                 $Tochange->save();                      
         }
@@ -158,8 +158,7 @@ class EquipoComp extends Component
 
     public function resetInputFields()
     {
-        $this->tipo = '';
-        $this->marca_modelo='';
+        //$this->tipo = '';
         $this->marca= '';
         $this->modelo ='';
         $this->serial ='';

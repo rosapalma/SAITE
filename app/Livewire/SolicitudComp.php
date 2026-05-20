@@ -14,7 +14,7 @@ use Hash;
 use Illuminate\Support\Carbon;
 class SolicitudComp extends Component
 {
-    public $resp_id, $descripcion, $asunto, $tipo_falla, $fecha,$equipos, $codigo, $ult;
+    public $resp_id, $descripcion, $asunto, $tipo,$marca, $modelo, $serial, $serial_BN, $tipo_falla, $fecha,$equipos, $codigo, $ult;
     public $solicits, $opcionSeleccionada, $resultados = [];
 
     function mount(){

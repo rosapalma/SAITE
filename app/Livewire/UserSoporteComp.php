@@ -67,6 +67,7 @@ class UserSoporteComp extends Component
             'cargo'=> $this->cargo,
             'ubicacion_id' =>$this->ubicacion_id,
         ]);
+          $this->mount();
 
     }
     public  function store(){

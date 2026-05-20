@@ -10,24 +10,20 @@
 			    			{{$t->name}}
 			    		@endif
 			    	 @endforeach
-	    	<p>Marca|Modelo: {{$marca_modelo}}</p>
 	    	<p>Serial: {{$serial}}</p>	
 	    	<p>Serian BN: {{$serial_BN}}</p>
 	    	<p>Ubicacion: {{$ubicacion_id}}</p>
-	    	
-		  	<p>Estado: {{$estado}}</p>
 		   	<p>Fecha de Adquisicion: {{$fecha_adq}}</p>
 		   	@if($responsable)
 		   		<p>Responsable: {{$responsable}}</p>
 		    	<p>Fecha de asignacion: {{$fecha_asig}}</p>
 		   	@endif
 
-		  	<p>Estado: {{$estado}}</p>
 		   	<p>Fecha de Adquisicion: {{$fecha_adq}}</p>
 
 		</div>
 		<div class="p-4 bg-gray-50 flex justify-end">
-            <button type="button" wire:click="closeModal()" class="btn btn-danger">Cerrar</button>
+            <button type="button" wire:click="closeModal()" class="btn-saite-enviar">Cerrar</button>
         </div>
      </div>
 </div>
