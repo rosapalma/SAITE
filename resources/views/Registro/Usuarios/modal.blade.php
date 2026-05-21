@@ -12,19 +12,19 @@
             <div>  
             <div>
                 <label class="label-blue">CEDULA</label>
-                <input type="text" wire:model.live="cedula" class="form-control">
+                <input type="text" wire:model.live="cedula" class="form-control" autocomplete="new-password">
             </div>   
             <div>
                 <label class="label-blue text-center">NOMBRE Y APELLIDO</label>
-                <input type="text" wire:model.live="full_name" class="form-control" >
+                <input type="text" wire:model.live="full_name" class="form-control" autocomplete="new-password">
             </div> 
             <div>
                 <label class="label-blue">CORREO INSTITUCIONAL</label>
-                <input type="email" wire:model.live="email" class="form-control" placeholder="usuario.ipm@upel.edu.ve">         
+                <input type="email" wire:model.live="email" class="form-control" placeholder="usuario.ipm@upel.edu.ve" autocomplete="new-password">         
             </div>    
             <div>
                 <label class="label-blue">CARGO</label>
-                <input type="text" wire:model.live="cargo" class="form-control " >
+                <input type="text" wire:model.live="cargo" class="form-control" autocomplete="new-password" >
             </div>
             <div style="display: flex;">
             <div>

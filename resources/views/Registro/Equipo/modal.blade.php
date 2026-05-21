@@ -11,13 +11,18 @@
 		    <div>
 		    <div>
 		    	<label class="label-blue form-label m-0">TIPO DE EQUIPO</label>
+
 		        <select wire:model.live="tipo" class="form-control">
 			        <option>Seleccione</option>
 			        <!--	mostrar el tipo de equipo si es editar-->
 			        @foreach ($tipos as $tipo)
-			        <option value="{{$tipo->id}}">{{$tipo->name}}</option>
+			        	@if ($tipo)
+			       			 <option value="{{$tipo->id}}" selected>{{$tipo->name}}</option>
+				        @else
+				        	<option value="{{$tipo->id}}">{{$tipo->name}}</option>
+				        @endif
 			        @endforeach
-		   		</select>	        	
+		   		</select>	      	
 		    </div>
 		  <!--   <div>
 		    	<label>MARCA || Modelo</label>
@@ -57,23 +62,35 @@
 		    		    <option value="{{$dp->id}}">{{$dp->name}}</option>
 		    	    @endforeach
 		    	</select>
-		    </div><br>
-		    LISTA ACA LOS USUARIOS YA REG. PARA ASIG RESPONSABLESS
+		    </div>
 		    <div>
 		        <label class="label-blue form-label m-0">ESTADO</label>
 			    <select wire:model.live="estado" class="form-control">
 			        <option value="">Seleccione</option>
 			        <option value="MANT">EN MANTENIMIENTO</option>
-			  	    <option value="DESINC">DESINCORPORADO</option>
-			  	    <option value="OPR">OPERATIVO</option>
+			  	    <option value="DESI">DESINCORPORADO</option>
+			  	    <option value="OPER">OPERATIVO</option>
 			   	</select>
-			</div>
-			<br>
-			@if ($responsable)
-				<label class="label-blue">  RESPONSABLE: </label>&nbsp;&nbsp;<label>{{$responsable}} </label><!--EQUIPO TIENE RESPONSABLE/ESTA ASIGNADO-->
-				&nbsp;&nbsp;Quitar&nbsp;<input type="checkbox" wire:model.live="responsable_id">
-			@endif    
-			 <div class="p-4 bg-gray-50 flex justify-end">
+			</div><br>
+			<div class="border-top">
+		    	<label class="label-blue form-label m-0">RESPONSABLE</label>
+		    	 
+		    	
+		    		<input wire:model.live="cedula" type="text"  autofocus placeholder="CÉDULA" wire:change="Shear" @if ($responsable) disabled @endif >
+		    		@if ($responsable) 
+						<label>Quitar&nbsp;
+							<input type="checkbox" wire:model.live="DeleResp" >
+						</label>	
+
+					@endif			
+				<label class="label-blue form-label m-2">{{$full_name}}</label> 
+		    		
+				<label>	fecha de Asignación: 
+					<input type="date" wire:model.live="fecha_asig" @if ($responsable) disabled @endif>
+				</label>		
+		    <div> 
+			  
+			<div class="p-4 bg-gray-50 flex justify-end">
                 <x-button> GURDAR</x-button>
             </div>
 		</form>

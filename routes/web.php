@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Livewire\EquipoComp;
-use App\Livewire\ResponsablComp;
+//use App\Livewire\ResponsablComp;
 use App\Livewire\SolicitudComp;
 use App\Livewire\UserSoporteComp;
 
@@ -29,7 +29,7 @@ Route::middleware([
   Route::get('/usuarios', UserSoporteComp::class)->name('usuarios');
     Route::get('/RegistEquipos',EquipoComp::class)->name('RegistEquipo');
 
-    Route::get('/RegistResponsabl',ResponsablComp::class)->name('RegistResponsabl');
+   //Route::get('/RegistResponsabl',ResponsablComp::class)->name('RegistResponsabl');
 
      
 });

@@ -92,6 +92,7 @@ class UserSoporteComp extends Component
         ]);    
 
         session()->flash('message', $this->user_id, $this->responsable_id  ? 'Registro actualizado.' : 'Registro creado.');
+        $this->mount();
         $this->closeModal();
         $this->resetInputFields();
     }

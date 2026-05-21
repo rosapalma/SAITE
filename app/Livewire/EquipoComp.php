@@ -9,13 +9,14 @@ use App\Models\Ubicacion;
 use App\Models\Responsable;
 use App\Models\Tipo;
 
+
 class EquipoComp extends Component
 {
     use WithPagination;
     #[Url] // Mantiene el filtro en la barra de direcciones
     public $searchserialbienes = '',$searchestado = '', $tipos, $ubicacions;
     #[Url]
-    public $equipo_id, $responsable_id, $tipo, $marca_modelo, $marca, $modelo, $serial, $serial_BN, $estado, $ubicacion_id, $fecha_asig, $fecha_adq, $responsable;
+    public $equipo_id, $equipo, $responsable_id, $cedula,$full_name, $tipo, $marca, $modelo, $serial, $serial_BN, $estado, $ubicacion_id, $fecha_asig, $fecha_adq, $responsable, $DeleResp;
     public $editar = false, $isOpen = false, $isOpenShow = false;  // Controla la visibilidad de modals
 
 
@@ -49,13 +50,13 @@ class EquipoComp extends Component
         $this->reset([ 'searchestado', 'searchestado']); 
         $this->resetPage(); 
     } 
+
     public function Show($id)
     {
         $this->isOpenShow = true; 
         $equipo = Equipo::findOrFail($id);
         $this->equipo_id = $id;
-        //$this->tipo= $equipo->tipo['name'];
-       // $this->marca_modelo = $equipo->marca_modelo;
+        $this->tipo= $equipo->tipo->id;
         $this->marca = $equipo->marca;
         $this->modelo = $equipo->modelo;
         $this->serial = $equipo->serial;
@@ -69,9 +70,22 @@ class EquipoComp extends Component
             $this->fecha_asig = $equipo->fecha_asig;
         }
         
-       
+    
+
         
       
+    } 
+    public function Shear()
+    {
+        $responsable = Responsable::where('cedula','=',$this->cedula)->first();
+        if ($responsable){
+            $this->ver =true; 
+            $this->full_name = $responsable->full_name;
+            $this->cedula = $responsable->cedula;
+            $this->responsable_id = $responsable->id;
+        }else{
+             session()->flash('Alertmessage', 'No esta registrado.');
+        } 
     }
     public function create(){
         $this->resetInputFields();
@@ -82,36 +96,37 @@ class EquipoComp extends Component
     {
         $this->editar = true;
         $equipo = Equipo::findOrFail($id);
-        
-        $this->equipo_id = $id;
-        //$this->tipo = $equipo->tipo['name'];
+        $this->equipo_id = $id;       
+        $this->tipo= $equipo->tipo_id;
         $this->marca = $equipo->marca;
         $this->modelo = $equipo->modelo;
         $this->serial = $equipo->serial;
         $this->serial_BN = $equipo->serial_BN;
         $this->estado = $equipo->estado;
         $this->ubicacion_id = $equipo->ubicacion_id;
-        if ($equipo->responsable){
-             $this->responsable=$equipo->responsable['full_name'];
+        if ($equipo->responsable_id){
+            $responsable = Responsable::where('id','=',$equipo->responsable_id)->first();
+            $this->responsable = $responsable;
+            $this->cedula=$responsable['cedula'];
+            $this->full_name=$responsable['full_name'];
+            $this->fecha_asig = $equipo->fecha_asig;
         }
        
         $this->fecha_adq = $equipo->fecha_adq;
         $this->openModal();
     }
-
+ 
     public function store()
     {
         $this->validate([
-            //'tipo'=>'required',
-            //'marca_modelo' => 'required',            
+            'tipo'=>'required',           
             'serial_BN' => 'required_without:serial',
             'serial' => 'required_without:serial_BN',
             'ubicacion_id' =>'required',
             'fecha_adq'=> 'required',
         ]);
         Equipo::updateOrCreate(['id' => $this->equipo_id], [
-            //'tipo'=> $this->tipo,
-            //'marca_modelo' => $this->marca_modelo,
+            'tipo_id'=> $this->tipo,
             'marca' => $this->marca,
             'modelo' => $this->modelo,
             'serial'=> $this->serial,
@@ -120,23 +135,32 @@ class EquipoComp extends Component
             'fecha_adq'=> $this->fecha_adq,
             'estado'=> $this->estado,
         ]);
-        if ($this->responsable_id)
+        $Tochange=Equipo::where('id','=',$this->equipo_id)->first();
+        if ($this->DeleResp)
         {
-            $Tochange=Equipo::where('id','=',$this->equipo_id)->first();
+             
+             $Tochange->update([
+                'responsable_id' => null,
+                'fecha_asig' => null,
+                 ]);
+                 $Tochange->save();                      
+        }else{
+            $responsable = Responsable::where('cedula','=',$this->cedula)->first();
+            $this->responsable_id = $responsable->id;
             $Tochange->update([
-                'responsable_id'=> null,
-                //validar estado de equipo si esta ASIGN CAM BIA A OPR
-                ]);
-                $Tochange->save();                      
+                'responsable_id' => $this->responsable_id,
+                'fecha_asig' => $this->fecha_asig,
+                 ]);
+                $Tochange->save();
         }
-        if ($this->estado == 'DESINC')
-        {
-            $desinc=Equipo::where('id','=',$this->equipo_id)->first();
-            $desinc->update([
-                'responsable_id'=> null,
-                ]);
-                $desinc->save();                      
-        }
+        // if ($this->estado == 'DESINC')
+        // {
+        //     $desinc=Equipo::where('id','=',$this->equipo_id)->first();
+        //     $desinc->update([
+        //         'responsable_id'=> null,
+        //         ]);
+        //         $desinc->save();                      
+        // }
        
 
         session()->flash('message', $this->equipo_id ? 'Registro actualizado.' : 'Registro creado.');
@@ -158,7 +182,7 @@ class EquipoComp extends Component
 
     public function resetInputFields()
     {
-        //$this->tipo = '';
+        $this->tipo = '';
         $this->marca= '';
         $this->modelo ='';
         $this->serial ='';
@@ -167,6 +191,10 @@ class EquipoComp extends Component
         $this->ubicacion_id = '';
         $this->responsable_id ='';
         $this->responsable ='';
+        $this->cedula ='';
+        $this->full_name ='';
+        $this->fecha_asig ='';
+        $this->editar ='';
     }
 
 }

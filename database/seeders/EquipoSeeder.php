@@ -42,18 +42,18 @@ class EquipoSeeder extends Seeder
             'fecha_adq'=>'2014-05-05',
             'serial'=>'111112',
             'serial_BN' => '000122',
-            'estado'=>'OPR'], //stop
+            'estado'=>'OPER'], //stop
         );
         DB::table('equipos')->insert(
         [
-            'tipo_id'=>1,
+            'tipo_id'=>2,
             'marca'=>'lenovo',
-            'modelo'=>'PC',
+            'modelo'=>'PLANO',
             'fecha_adq'=>'2014-05-05',
             'ubicacion_id'=>5,
             'serial'=>'111113',
             'serial_BN' => '000133', 
-            'estado'=>'DESIN',],
+            'estado'=>'DESI',],
         );
     }
 }

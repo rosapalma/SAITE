@@ -55,6 +55,6 @@
 
         @livewireScripts
 
-        <x-footer/>
+        <!-- <x-footer/> SOLO PARA USUARIO NO AUTH-->
     </body>
 </html>

@@ -50,9 +50,7 @@
                             <x-dropdown-link href="{{ route('RegistEquipo') }}" >
                                 {{ __('Equipos') }}
                             </x-dropdown-link>
-                           <x-dropdown-link href="{{ route('RegistResponsabl') }}" >
-                                {{ __('Asig. Equipo') }}
-                            </x-dropdown-link> 
+                                <!-- link menu de asignar usuario borrado route RegistResponsabl }} -->
                               <x-dropdown-link href="{{ route('usuarios') }}" >{{ __('Usuarios') }}
                             </x-dropdown-link>                  
 
