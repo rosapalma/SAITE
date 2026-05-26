@@ -39,7 +39,7 @@ class EquipoComp extends Component
                 ->when($this->searchestado, function($query) {
                     $query->where('estado', $this->searchestado);
                 })
-                ->paginate(10)
+                ->paginate(3)
         ]);
 
     }
@@ -84,7 +84,8 @@ class EquipoComp extends Component
             $this->cedula = $responsable->cedula;
             $this->responsable_id = $responsable->id;
         }else{
-             session()->flash('Alertmessage', 'No esta registrado.');
+            $this->responsable_id = '';
+            session()->flash('Alertmessage', 'No esta registrado.');
         } 
     }
     public function create(){
@@ -102,17 +103,17 @@ class EquipoComp extends Component
         $this->modelo = $equipo->modelo;
         $this->serial = $equipo->serial;
         $this->serial_BN = $equipo->serial_BN;
+        $this->fecha_adq = $equipo->fecha_adq;
         $this->estado = $equipo->estado;
         $this->ubicacion_id = $equipo->ubicacion_id;
-        if ($equipo->responsable_id){
-            $responsable = Responsable::where('id','=',$equipo->responsable_id)->first();
+        $responsable = Responsable::where('id','=',$equipo->responsable_id)->first();
+        if ($responsable){
             $this->responsable = $responsable;
-            $this->cedula=$responsable['cedula'];
+            $this->cedula=$responsable->cedula;
             $this->full_name=$responsable['full_name'];
             $this->fecha_asig = $equipo->fecha_asig;
         }
-       
-        $this->fecha_adq = $equipo->fecha_adq;
+        
         $this->openModal();
     }
  
@@ -125,6 +126,27 @@ class EquipoComp extends Component
             'ubicacion_id' =>'required',
             'fecha_adq'=> 'required',
         ]);
+        if ($this->cedula) { 
+         $this->validate([
+            'cedula' => 'exists:responsables,cedula',
+        ]);          
+            $responsable = Responsable::where('cedula','=',$this->cedula)->first();
+            $this->responsable_id = $responsable->id; 
+            $this->validate([                
+                'fecha_asig'=>'required',           
+            ]);
+        }else{
+            $this->responsable_id = null;
+            $this->fecha_asig = null;
+        }  
+        if ($this->estado == 'DESI'){
+            $this->responsable_id = null;
+            $this->fecha_asig = null;
+        } 
+        if ($this->DeleResp){           
+            $this->responsable_id = null;
+            $this->fecha_asig = null;                     
+        }           
         Equipo::updateOrCreate(['id' => $this->equipo_id], [
             'tipo_id'=> $this->tipo,
             'marca' => $this->marca,
@@ -134,33 +156,10 @@ class EquipoComp extends Component
             'ubicacion_id' =>$this->ubicacion_id,
             'fecha_adq'=> $this->fecha_adq,
             'estado'=> $this->estado,
+            'responsable_id' => $this->responsable_id,
+            'fecha_asig' => $this->fecha_asig,
         ]);
-        $Tochange=Equipo::where('id','=',$this->equipo_id)->first();
-        if ($this->DeleResp)
-        {
-             
-             $Tochange->update([
-                'responsable_id' => null,
-                'fecha_asig' => null,
-                 ]);
-                 $Tochange->save();                      
-        }else{
-            $responsable = Responsable::where('cedula','=',$this->cedula)->first();
-            $this->responsable_id = $responsable->id;
-            $Tochange->update([
-                'responsable_id' => $this->responsable_id,
-                'fecha_asig' => $this->fecha_asig,
-                 ]);
-                $Tochange->save();
-        }
-        // if ($this->estado == 'DESINC')
-        // {
-        //     $desinc=Equipo::where('id','=',$this->equipo_id)->first();
-        //     $desinc->update([
-        //         'responsable_id'=> null,
-        //         ]);
-        //         $desinc->save();                      
-        // }
+
        
 
         session()->flash('message', $this->equipo_id ? 'Registro actualizado.' : 'Registro creado.');
@@ -178,7 +177,7 @@ class EquipoComp extends Component
     // }
 
     public function openModal() { $this->isOpen = true; }
-    public function closeModal() { $this->isOpen = false;$this->isOpenShow = false; }
+    public function closeModal() { $this->isOpen = false;  $this->resetInputFields(); $this->isOpenShow = false; }
 
     public function resetInputFields()
     {

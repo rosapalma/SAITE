@@ -14,6 +14,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/upel.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/saite.css') }}" rel="stylesheet">
 
 
         <!-- Scripts -->

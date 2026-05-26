@@ -72,10 +72,9 @@
 			  	    <option value="OPER">OPERATIVO</option>
 			   	</select>
 			</div><br>
+			<h1>responsable id : {{$responsable_id}}</h1>
 			<div class="border-top">
-		    	<label class="label-blue form-label m-0">RESPONSABLE</label>
-		    	 
-		    	
+		    	<label class="label-blue form-label m-0">RESPONSABLE</label>    	
 		    		<input wire:model.live="cedula" type="text"  autofocus placeholder="CÉDULA" wire:change="Shear" @if ($responsable) disabled @endif >
 		    		@if ($responsable) 
 						<label>Quitar&nbsp;
@@ -84,7 +83,7 @@
 
 					@endif			
 				<label class="label-blue form-label m-2">{{$full_name}}</label> 
-		    		
+		    		<br>
 				<label>	fecha de Asignación: 
 					<input type="date" wire:model.live="fecha_asig" @if ($responsable) disabled @endif>
 				</label>		
