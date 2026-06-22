@@ -46,31 +46,10 @@ class SolicitudComp extends Component
  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function Save(){
 
         $this->validate([
-            'equipo_id'=>'required',
+            'opcionSeleccionada'=>'required',
             'asunto' => 'required',
             'descripcion' => 'required',
         ]);
@@ -89,7 +68,7 @@ class SolicitudComp extends Component
         $this->codigo = $cod;
         SoliServicio::Create([
             'responsable_id' => $this->resp_id,
-            'equipo_id' =>$this->equipo_id,
+            'equipo_id' =>$this->opcionSeleccionada,
             'codigo' => $this->codigo,
             'tipo_falla'=>$this->tipo_falla,
             'asunto' =>$this->asunto,
@@ -109,6 +88,7 @@ class SolicitudComp extends Component
         $this->asunto ='';
         $this->descripcion='';
         $this->codigo='';
+        $this->resultados='';
 
     }
 }

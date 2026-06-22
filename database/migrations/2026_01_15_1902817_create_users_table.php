@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('responsable_id')->nullable();
-            $table->string('email')->unique();
+            $table->unsignedBigInteger('responsable_id')->unique();
+            $table->string('email')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->integer('privilege');

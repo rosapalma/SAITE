@@ -44,24 +44,26 @@
 				   	<input type="text" wire:model.live="serial_BN" placeholder="SERIAL BN" class="form-control">
 				</div>
 			</div><br>
-			<div>
-		    	<label class="label-blue">Fecha de Adquisición:</label>
-		    	@if ($editar)				 
-					<input type="date" wire:model.live="fecha_adq" disabled class="form-control">
-				@else
-					<input type="date" wire:model.live="fecha_adq" class="form-control">
-				@endif
+			<div style="display: flex;">
+				<div >
+				    <label class="label-blue form-label m-0">UBICACIÓN</label>
+			        <select wire:model.live="ubicacion_id" required class="form-control">
+			       	    <option value="">Seleccione</option>
+			       	    @foreach ($ubicacions as $dp)
+			    		    <option value="{{$dp->id}}">{{$dp->name}}</option>
+			    	    @endforeach
+			    	</select>
+			    </div>
+			    <div style="margin-left:21% ;">
+			    	<label class="label-blue form-label m-0">FECHA DE ADQUISICIÓN</label>
+			    	@if ($editar)				 
+						<input type="date" wire:model.live="fecha_adq" disabled class="form-control">
+					@else
+						<input type="date" wire:model.live="fecha_adq" class="form-control">
+					@endif
 
-			</div><br>
-
-			<div>
-			    <label class="label-blue form-label m-0">UBICACIÓN</label>
-		        <select wire:model.live="ubicacion_id" required class="form-control">
-		       	    <option value="">Seleccione</option>
-		       	    @foreach ($ubicacions as $dp)
-		    		    <option value="{{$dp->id}}">{{$dp->name}}</option>
-		    	    @endforeach
-		    	</select>
+				</div>
+				
 		    </div>
 		    <div>
 		        <label class="label-blue form-label m-0">ESTADO</label>

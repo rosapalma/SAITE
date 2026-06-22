@@ -25,12 +25,5 @@ class UserSeeder extends Seeder
             'password' => Hash::make('17708149'),
             'privilege' => 1], 
         );
-          DB::table('users')->insert(///fijo
-        [
-            'responsable_id'=>2,
-            'email'=>'angelica.villarroel.ipm@upel.edu.ve',
-            'password' => Hash::make('17708150'),
-            'privilege' => 1], 
-        );
     }
 }

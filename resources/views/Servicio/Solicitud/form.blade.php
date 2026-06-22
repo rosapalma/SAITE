@@ -15,7 +15,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ Auth::user()->name ?? 'ROSA VIRGINIA PALMA' }}</td>
+                    <td> <?php echo strtoupper (Auth::user()->responsable['full_name']);?></td>
                     <td>UNIDAD DE INFORMÁTICA</td>
                     <td>{{ date('d/m/Y g:i a') }}</td>
                 </tr>

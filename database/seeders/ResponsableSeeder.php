@@ -24,13 +24,6 @@ class ResponsableSeeder extends Seeder
             'email'=> 'virginia.palma.ipm@upel.edu.ve',
             'ubicacion_id'=> 1,], 
             );
-        DB::table('responsables')->insert(
-            ['cedula'=>17708150,
-            'full_name' => 'ANGELICA VILLARROEL',
-            'email'=> 'angelica.villarroel.ipm@upel.edu.ve',
-            'ubicacion_id'=> 1,], 
-            );
-
 
     }
 }

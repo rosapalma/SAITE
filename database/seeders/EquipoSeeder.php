@@ -18,42 +18,6 @@ class EquipoSeeder extends Seeder
             DB::table('equipos')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
             
-        DB::table('equipos')->insert(
-        [
-            'tipo_id'=>1,
-            'marca'=>'HP',
-            'modelo'=>'HORIZONTAL',
-            'serial'=>'111111',
-            'serial_BN' => '000111',
-            'responsable_id'=>1, // asignada
-            'ubicacion_id'=>1,
-            'fecha_adq'=>'2014-05-05',
-            'fecha_asig'=>'2026-01-01',
-            'estado'=>'MANT'], //fecha ultima de adsignacion
-        
-            
-        );
-        DB::table('equipos')->insert(
-        [
-            'tipo_id'=>3,
-            'marca'=>'FORZA',
-            'modelo'=>'REGULADOR',
-            'ubicacion_id'=>1,
-            'fecha_adq'=>'2014-05-05',
-            'serial'=>'111112',
-            'serial_BN' => '000122',
-            'estado'=>'OPER'], //stop
-        );
-        DB::table('equipos')->insert(
-        [
-            'tipo_id'=>2,
-            'marca'=>'lenovo',
-            'modelo'=>'PLANO',
-            'fecha_adq'=>'2014-05-05',
-            'ubicacion_id'=>5,
-            'serial'=>'111113',
-            'serial_BN' => '000133', 
-            'estado'=>'DESI',],
-        );
+
     }
 }
