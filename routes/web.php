@@ -6,6 +6,8 @@ use App\Livewire\EquipoComp;
 //use App\Livewire\ResponsablComp;
 use App\Livewire\SolicitudComp;
 use App\Livewire\UserSoporteComp;
+use App\Livewire\UsuarioComp;
+use App\Livewire\AsigServicioComp;
 
 
 
@@ -25,9 +27,10 @@ Route::middleware([
     // Route::get('', function () {
     //     return view('dashboard');
     // })->name('');
-  Route::get('/dashboard',SolicitudComp::class)->name('dashboard');
-  Route::get('/usuarios', UserSoporteComp::class)->name('usuarios');
+    Route::get('/dashboard',SolicitudComp::class)->name('dashboard');
+    Route::get('/usuarios',UsuarioComp::class)->name('usuarios');
     Route::get('/RegistEquipos',EquipoComp::class)->name('RegistEquipo');
+    Route::get('/AsigServicio',AsigServicioComp::class)->name('AsigServicio');
 
    //Route::get('/RegistResponsabl',ResponsablComp::class)->name('RegistResponsabl');
 

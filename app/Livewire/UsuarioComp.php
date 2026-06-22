@@ -10,9 +10,10 @@ use App\Models\Responsable;
 use Hash;
 use Auth;
 
-class UserSoporteComp extends Component
+class UsuarioComp extends Component
 {
-     use WithPagination;
+    
+      use WithPagination;
 
     public $user_id, $full_name, $cedula, $cargo, $ubicacion_id, $email, $password_confirmation, $password,$usuarios, $privilege, $ubicacions, $isOpenShow=false, $isOpen=false, $editar=false, $shearch, $responsable_id;
    
@@ -21,9 +22,9 @@ class UserSoporteComp extends Component
         $this->usuarios = User::orderBy('id', 'desc')->get();
         $this->ubicacions = Ubicacion::all();
     }
-    public function render()
+ public function render()
     {
-        return view('livewire.user-soporte-comp');
+        return view('livewire.usuario-comp');
     }
     
 
@@ -55,8 +56,7 @@ class UserSoporteComp extends Component
     public function SaveResp(){
         $this->validate([
             'cedula'=>'required',
-            'full_name' => 'required',            
-            'email' => 'required',
+            'full_name' => 'required',   
             'cargo' => 'required',
             'ubicacion_id' =>'required',
         ]);
@@ -127,5 +127,5 @@ class UserSoporteComp extends Component
          $this->password ='';
          $this->responsable ='';
     }
-
+   
 }
