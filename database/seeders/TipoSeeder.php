@@ -28,5 +28,11 @@ class TipoSeeder extends Seeder
         DB::table('tipos')->insert(///fijo
             ['name' => 'REGULADOR'], 
         );
+        DB::table('tipos')->insert(///fijo
+            ['name' => 'UPS'], 
+        );
+        DB::table('tipos')->insert(///fijo
+            ['name' => 'CAMARA WEB'], 
+        );
     }
 }

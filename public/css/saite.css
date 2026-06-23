@@ -78,3 +78,15 @@
 .btn-saite-enviar:hover {
     background-color: #003a8a;
 }
+
+/*STYLES AL SELECT FILA TABLS*/
+
+.fila-seleccionable {
+  cursor: pointer; /* Muestra una manito al pasar el ratón */
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo cuando la fila es seleccionada */
+.fila-seleccionable.seleccionada {
+  background-color: #d1e7dd; /* Verde claro de ejemplo */
+}
