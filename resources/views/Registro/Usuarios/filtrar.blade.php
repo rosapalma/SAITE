@@ -1,5 +1,7 @@
-  Buscar por: 
-     <input wire:model.live="search" type="text" placeholder="NOMBRE"> 
+<div> 
+   <input type="text" wire:model.live="search" placeholder="Buscar usuarios..." class="form-control mb-3">
+</div>
+
 
 
    <!-- FALTA ADAPTAR AL MODULO USUARIO -->

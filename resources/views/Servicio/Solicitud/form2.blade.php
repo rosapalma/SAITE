@@ -4,6 +4,23 @@
     </h2>
 
     <form wire:submit.prevent="Save">
+        
+        <table class="upel-table">
+            <thead>
+                <tr>
+                    <th>USUARIO</th>
+                    <th>UBICACIÓN</th>
+                    <th>FECHA Y HORA SOLICITUD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> <?php echo strtoupper (Auth::user()->responsable['full_name']);?></td>
+                    <td>UNIDAD DE INFORMÁTICA</td>
+                    <td>{{ date('d/m/Y g:i a') }}</td>
+                </tr>
+            </tbody>
+        </table>
 
         <div class="solicitud-grid">
             
@@ -44,11 +61,9 @@
 
                 <div>
                     <label for="tipo_falla" style="font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">TIPO DE FALLA:</label>
-                    <select id="tipo_falla" wire:model.live="tipo_falla"class="lista-equipos-select" style="height: 40px; padding: 5px 10px;">
-                        <option>SELECCIONE</option>
+                    <select id="tipo_falla" class="lista-equipos-select" style="height: 40px; padding: 5px 10px;">
                         <option value="HARDWARE">HARDWARE</option>
                         <option value="SOFTWARE">SOFTWARE</option>
-                        <option>NO SE</option>
                     </select>
                 </div>
 

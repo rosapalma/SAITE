@@ -6,13 +6,14 @@
         </h1>
     @endif
 <div class="d-flex p-10 bg-light">
-
-   <div class="p-2 bg-info col-md-6">
-     @include('Administrar.AsigServi.tool')
+   <div class="p-2 bg-secundary col-md-6">
+    @include('Administrar.AsigServi.filtrar')
+    @include('Administrar.AsigServi.tool')
    </div>&nbsp;&nbsp;&nbsp;  
    <div class="p-2 bg-secondary text-white col-md-6">
      @include('Administrar.AsigServi.form')
-   </div>
-
-   
+   </div>   
 </div>
+@if($isOpenShow)
+ @include('Administrar.AsigServi.show')
+@endif

@@ -15,18 +15,32 @@ use Auth;
 class AsigServicioComp extends Component
 {
     use WithPagination;
-    public $responsable, $equipos, $solicits, $UserSoport, $tecnico, $ticketSeleccionado, $servicio_id, $prioridad ;
+    public $responsable, $equipos, $UserSoport, $tecnico, $ticketSeleccionado,$servicio, $servicio_id, $prioridad, $shearch, $isOpenShow = false, $id;
 
     function mount(){
         //$this->responsable =  Auth::user()->responsable['id'];
         //$this->equipos = Equipo::where('responsable_id','=',$this->responsable)->get();
         //$this->solicits = SoliServicio::where('responsable_id','=',$this->responsable)->get();
-        $this->solicits = SoliServicio::all();
+        //$solicits = SoliServicio::where('statud', 'like', '%' . $this->shearch . '%')->get();
+        //$this->solicits=$solicits;
+        //$this->solicits = SoliServicio::all();
         $this->UserSoport = User::all();
+        //$this->solicits = $solicits;
     }
     public function render()
     {
-        return view('livewire.asig-servicio-comp');
+        if($this->shearch){
+            $solicits = SoliServicio::where('statud', 'like', '%' . $this->shearch . '%')->paginate(6);
+            return view('livewire.asig-servicio-comp', [
+                'solicits' => $solicits
+            ]);
+        }else{
+            $solicits = SoliServicio::paginate(6);
+            return view('livewire.asig-servicio-comp', [
+                'solicits' => $solicits
+            ]);
+        }
+
     }
 
     public function leerFila($id)
@@ -35,6 +49,14 @@ class AsigServicioComp extends Component
         $servicio = SoliServicio::find($id);
         $this->ticketSeleccionado = $servicio->codigo;
         $this->servicio_id = $servicio->id;
+        $this->servicio= $servicio;
+    }
+    public function Show($id)
+    {
+       // $this->leerFila();
+        $this->isOpenShow = true; 
+        $servicio = SoliServicio::findOrFail($id);
+        $this->servicio = $servicio;     
     }
 
     public function store(){
@@ -50,11 +72,17 @@ class AsigServicioComp extends Component
             'prioridad' => $this->prioridad,
         ]);
         //ACTUALIZAR EL ESTADO DE LA SOLICITUD
-          $this->mount();
-          $this->resetInputFields();
-         session()->flash('message', 'Registro actualizado.');
+        $UpdateSolicitud = SoliServicio::where('id','=',$this->servicio_id )->first();
+          $UpdateSolicitud->update([
+            'statud' => 'ASIGNADA',
+            ]);
+        $UpdateSolicitud->save();
+        $this->mount();
+        $this->resetInputFields();
+        session()->flash('message', 'Registro actualizado.');
 
     }
+    public function closeModal() { $this->isOpen = false;  $this->resetInputFields(); $this->isOpenShow = false; }
     public function resetInputFields()
     {
         $this->servicio_id = '';

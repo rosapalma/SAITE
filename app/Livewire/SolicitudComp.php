@@ -74,7 +74,7 @@ class SolicitudComp extends Component
             'asunto' =>$this->asunto,
             'descripcion' =>$this->descripcion,
             'fecha' => now(),
-            'statud'=>'pendiente',
+            'statud'=>'PENDIENTE',
         ]);
         $this->mount();
         $this->clear();
@@ -89,6 +89,7 @@ class SolicitudComp extends Component
         $this->descripcion='';
         $this->codigo='';
         $this->resultados='';
+        $this->opcionSeleccionada='';
 
     }
 }

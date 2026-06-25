@@ -10,8 +10,8 @@
   <tbody>
     @foreach ($solicits as $so )
       <tr align="center" >
-         <td>{{$so->codigo}}</td>
-        <td>{{$so->equipo['marca']}}</td>
+        <td>{{$so->codigo}}</td>
+        <td>{{$so->equipo->tipo['name']}}</td>
         <td>{{$so->fecha}}</td>
         <td>{{$so->statud}}</td>
 

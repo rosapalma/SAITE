@@ -16,17 +16,17 @@
                         {{ __('Solicitud de Servicio') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="" :active="request()->routeIs('')">
-                         {{ __('Estado de Solicitud') }}
-                    </x-nav-link>
-                </div>
+               
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{route('AsigServicio')}}" :active="request()->routeIs('AsigServicio')">
                        {{ __('Asig. Servicio') }}
                     </x-nav-link>
                 </div>
-
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="" :active="request()->routeIs('')">
+                       {{ __('Bitacora') }}
+                    </x-nav-link>
+                </div>
                  <!-- Menu Dropdown Registro-->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-dropdown>
