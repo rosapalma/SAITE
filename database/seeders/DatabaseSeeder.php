@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
            ResponsableSeeder::class,
            EquipoSeeder::class,
            UserSeeder::class,
+           //falta soliservicio y bitacora
         ]);
     }
 }

@@ -8,6 +8,7 @@ use App\Livewire\SolicitudComp;
 use App\Livewire\UserSoporteComp;
 use App\Livewire\UsuarioComp;
 use App\Livewire\AsigServicioComp;
+use App\Livewire\BitacoraComp;
 
 
 
@@ -31,6 +32,7 @@ Route::middleware([
     Route::get('/usuarios',UsuarioComp::class)->name('usuarios');
     Route::get('/RegistEquipos',EquipoComp::class)->name('RegistEquipo');
     Route::get('/AsigServicio',AsigServicioComp::class)->name('AsigServicio');
+    Route::get('/Bitacora', BitacoraComp::class)->name('Bitacora');
 
    //Route::get('/RegistResponsabl',ResponsablComp::class)->name('RegistResponsabl');
 

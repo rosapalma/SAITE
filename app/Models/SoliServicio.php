@@ -18,4 +18,8 @@ class SoliServicio extends Model
     {
         return $this->belongsTo(Equipo::class);
     }
+    public function Bitacora()
+    {
+        return $this->hasOne(Bitacora::class);
+    }
 }

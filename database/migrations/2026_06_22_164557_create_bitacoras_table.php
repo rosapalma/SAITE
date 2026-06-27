@@ -15,7 +15,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->unsignedBigInteger('soli_servicios_id');
-            $table->unsignedBigInteger('tecnico_id');
+            $table->unsignedBigInteger('responsable_id');
             $table->string('solucion')->nullable();
             $table->string('diagnostico')->nullable();
             $table->string('recomendacion')->nullable();
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('soli_servicios_id')->references('id')->on('soli_servicios');
-             $table->foreign('tecnico_id')->references('id')->on('responsables');
+            $table->foreign('responsable_id')->references('id')->on('responsables'); // tecnico 
         });
     }
 

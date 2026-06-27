@@ -9,7 +9,6 @@ use App\Models\SoliServicio;
 use App\Models\Responsable;
 use App\Models\Bitacora;
 use App\Models\User;
-
 use Auth;
 
 class AsigServicioComp extends Component
@@ -68,7 +67,7 @@ class AsigServicioComp extends Component
        
         Bitacora::Create([
             'soli_servicios_id'=> $this->servicio_id,
-            'tecnico_id' => $this->tecnico,    //guarda el id de usuarios        
+            'responsable_id' => $this->tecnico,    //guarda el id de usuarios        
             'prioridad' => $this->prioridad,
         ]);
         //ACTUALIZAR EL ESTADO DE LA SOLICITUD
