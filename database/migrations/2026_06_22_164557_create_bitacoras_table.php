@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('diagnostico')->nullable();
             $table->string('recomendacion')->nullable();
             $table->string('prioridad')->nullable();
-
-
-            $table->string('statud')->nullable();
             $table->date('fecha')->nullable();
             $table->timestamps();
 

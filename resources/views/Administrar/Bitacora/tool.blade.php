@@ -5,15 +5,23 @@
             <th>USUARIO</th>
             <th>EQUIPO</th>
             <th>FECHA DE SOLICITUD</th>
-            <th>DETALLES</th>
+            <th>PRIORIDAD</th>
          </tr>
       </thead>
       <tbody> 
          @foreach ($bitacors as $bit)
-      
-            <td>{{$bit}}</td>
-            <td>fff</td>
-            <td> <button type="button" wire:click="Show({{ $bit->id }})" class="btn btn-primary">Ver</button></td>
+            @if($bit->solicitud['statud']=='PENDIENTE') 
+            <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-warning">
+            @elseif (($bit->solicitud['statud']=='ASIGNADA') )
+            <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-primary">
+            @elseif($bit->solicitud['statud']=='CERRADA') 
+            <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-danger">
+            @endif
+            <td>{{$bit->solicitud['codigo']}}</td>
+            <td>{{$bit->solicitud->responsable['full_name']}}</td>
+            <td>{{$bit->solicitud->equipo->tipo['name']}}</td>
+            <td>{{$bit->solicitud['fecha']}}</td>
+            <td>{{$bit->prioridad}}</td>
          </tr>
          @endforeach
       </tbody>         

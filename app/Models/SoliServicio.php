@@ -20,6 +20,6 @@ class SoliServicio extends Model
     }
     public function Bitacora()
     {
-        return $this->hasOne(Bitacora::class);
+        return $this->hasMany(Bitacora::class);
     }
 }

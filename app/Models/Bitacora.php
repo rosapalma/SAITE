@@ -13,7 +13,7 @@ class Bitacora extends Model
 
     public function solicitud()
     {
-        return $this->belongsTo(SoliServicio::class);
+        return $this->belongsTo(SoliServicio::class,'soli_servicios_id','id');
     }
 
 
