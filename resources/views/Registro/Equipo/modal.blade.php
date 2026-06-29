@@ -74,7 +74,6 @@
 			  	    <option value="OPER">OPERATIVO</option>
 			   	</select>
 			</div><br>
-			<h1>responsable id : {{$responsable_id}}</h1>
 			<div class="border-top">
 		    	<label class="label-blue form-label m-0">RESPONSABLE</label>    	
 		    		<input wire:model.live="cedula" type="text"  autofocus placeholder="CÉDULA" wire:change="Shear" @if ($responsable) disabled @endif >

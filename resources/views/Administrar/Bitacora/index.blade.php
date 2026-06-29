@@ -3,7 +3,7 @@
   @endif
 <div class="d-flex p-10 bg-light">
     <div class="p-2 bg-secundary  col-md-6">
-        @include('Administrar.AsigServi.filtrar')
+        @include('Administrar.Bitacora.filtrar')
         @include('Administrar.Bitacora.tool')
     </div>&nbsp;
     <div class="p-2 col-md-6 border border-secondary">

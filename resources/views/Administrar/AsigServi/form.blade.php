@@ -6,7 +6,7 @@
    <select wire:model.live="tecnico" class="form-control">
       <option>ASIGNAR SERVICIO A:</option>
       @foreach ($UserSoport as $US)
-         @if($US->privilege < 3 )
+         @if($US->privilege < 4 )
             <option value="{{$US->id}}">{{$US->responsable['full_name']}}</option>
          @endif
       @endforeach

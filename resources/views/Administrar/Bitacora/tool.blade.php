@@ -10,19 +10,20 @@
       </thead>
       <tbody> 
          @foreach ($bitacors as $bit)
-            @if($bit->solicitud['statud']=='PENDIENTE') 
-            <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-warning">
-            @elseif (($bit->solicitud['statud']=='ASIGNADA') )
-            <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-primary">
-            @elseif($bit->solicitud['statud']=='CERRADA') 
-            <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-danger">
+   
+            @if (Auth::user()->responsable['id'] == $bit->responsable_id)              
+               @if (($bit->solicitud['statud']=='ASIGNADA') )
+               <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-primary">
+               @elseif($bit->solicitud['statud']=='CERRADA') 
+               <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-danger">
+               @endif
+               <td>{{$bit->solicitud['codigo']}}</td>
+               <td>{{$bit->solicitud->responsable['full_name']}}</td>
+               <td>{{$bit->solicitud->equipo->tipo['name']}}</td>
+               <td>{{$bit->solicitud['fecha']}}</td>
+               <td>{{$bit->prioridad}}</td>
+            </tr>
             @endif
-            <td>{{$bit->solicitud['codigo']}}</td>
-            <td>{{$bit->solicitud->responsable['full_name']}}</td>
-            <td>{{$bit->solicitud->equipo->tipo['name']}}</td>
-            <td>{{$bit->solicitud['fecha']}}</td>
-            <td>{{$bit->prioridad}}</td>
-         </tr>
          @endforeach
       </tbody>         
 </table>
@@ -32,7 +33,7 @@
         </div>
     @endif
 <div>
-   <label> <b class="text-danger">CERRRADAS</b> | <b class="text-primary"> ASIGNADAS</b>| <b class="text-warning">PENDIENTES</b></label>
+   <label> <b class="text-danger">CERRRADAS</b> | <b class="text-primary"> ASIGNADAS</b></label>
 </div>
 
 <script>
