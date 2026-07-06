@@ -9,13 +9,14 @@
          </tr>
       </thead>
       <tbody> 
-         @foreach ($bitacors as $bit)
+
+         @foreach ($bitacors ?? [] as $bit)
    
             @if (Auth::user()->responsable['id'] == $bit->responsable_id)              
                @if (($bit->solicitud['statud']=='ASIGNADA') )
-               <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-primary">
+               <tr wire:click="leerFila({{$bit->solicitud['id']}})"  class="fila-seleccionable  text-primary">
                @elseif($bit->solicitud['statud']=='CERRADA') 
-               <tr wire:click="leerFila({{$bit->id}})"  class="fila-seleccionable  text-danger">
+               <tr wire:click="leerFila({{$bit->solicitud['id']}})"  class="fila-seleccionable  text-danger">
                @endif
                <td>{{$bit->solicitud['codigo']}}</td>
                <td>{{$bit->solicitud->responsable['full_name']}}</td>
@@ -27,7 +28,7 @@
          @endforeach
       </tbody>         
 </table>
- @if($bitacors->count())
+ @if($bitacors?->count() > 0)
         <div style="color:blue;">
             {{ $bitacors->links() }}    
         </div>

@@ -15,22 +15,15 @@ class BitacoraComp extends Component
 {
     use WithPagination;
     public $shearch, $ticketSeleccionado, $solicitud, $solicitud_id,$soli_servicios_id, $tecnico_id, $solucion, $diagnostico, $recomendacion, $prioridad, $fecha, $Bitacora;
+
+
     
 
     public function render()
-    {        
-        if($this->shearch){
-            $bitacors = Bitacora::where('statud', 'like', '%' . $this->shearch . '%')->paginate(6);
-            return view('livewire.bitacora-comp', [
-                'bitacors' => $bitacors
-            ]);
-        }else{
-            $bitacors = Bitacora::paginate(6);
-            return view('livewire.bitacora-comp', [
-                'bitacors' => $bitacors
-            ]);
-        }
-
+    {  
+        return view('livewire.bitacora-comp', [
+            'bitacors' => Bitacora::paginate(10) 
+        ]);
     }
 
     public function leerFila($id)

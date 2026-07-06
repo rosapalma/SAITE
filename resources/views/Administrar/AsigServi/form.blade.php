@@ -7,7 +7,7 @@
       <option>ASIGNAR SERVICIO A:</option>
       @foreach ($UserSoport as $US)
          @if($US->privilege < 4 )
-            <option value="{{$US->id}}">{{$US->responsable['full_name']}}</option>
+            <option value="{{$US->responsable_id}}">{{$US->responsable['full_name']}}</option>
          @endif
       @endforeach
    </select>

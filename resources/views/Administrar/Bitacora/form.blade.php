@@ -12,8 +12,6 @@
 	    	FECHA DE SOLICITUD: {{$solicitud->fecha}} </div>
 	    @endif
    </div>
-  
-        
        
 <form wire:submit.prevent="store">
 
