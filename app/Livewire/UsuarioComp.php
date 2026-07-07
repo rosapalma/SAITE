@@ -55,7 +55,7 @@ class UsuarioComp extends Component
     }
     public function SaveResp(){
         $this->validate([
-            'cedula'=>'required',
+            'cedula'=>'required|numeric|digits_between:7,10',
             'full_name' => 'required',   
             'cargo' => 'required',
             'ubicacion_id' =>'required',

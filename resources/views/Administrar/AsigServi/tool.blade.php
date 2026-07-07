@@ -18,7 +18,7 @@
             <tr wire:click="leerFila({{$sol->id}})"  class="fila-seleccionable  text-danger">
             @endif
             <td>{{$sol->codigo}}</td>
-            <td>{{$sol->responsable['full_name']}}</td>
+            <td class="text-justify px-4 py-2">{{$sol->responsable['full_name']}}</td>
             <td>{{$sol->equipo['modelo']}}</td>
             <td>{{$sol->fecha}}</td>
             <td> <button type="button" wire:click="Show({{ $sol->id }})" class="btn btn-primary">Ver</button></td>

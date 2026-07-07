@@ -2,10 +2,11 @@
       <thead class="thead-dark">
          <tr>
             <th>TICKET</th>
-            <th>USUARIO</th>
-            <th>EQUIPO</th>
+           <!--  <th>USUARIO</th>
+            <th>EQUIPO</th> -->
             <th>FECHA DE SOLICITUD</th>
             <th>PRIORIDAD</th>
+            <th>DETALLES</th>
          </tr>
       </thead>
       <tbody> 
@@ -19,10 +20,11 @@
                <tr wire:click="leerFila({{$bit->solicitud['id']}})"  class="fila-seleccionable  text-danger">
                @endif
                <td>{{$bit->solicitud['codigo']}}</td>
-               <td>{{$bit->solicitud->responsable['full_name']}}</td>
-               <td>{{$bit->solicitud->equipo->tipo['name']}}</td>
+              <!--  <td class="text-justify px-4 py-2">{{$bit->solicitud->responsable['full_name']}}</td>
+               <td>{{$bit->solicitud->equipo->tipo['name']}}</td> -->
                <td>{{$bit->solicitud['fecha']}}</td>
                <td>{{$bit->prioridad}}</td>
+               <td> <button type="button" wire:click="Show({{ $bit->solicitud->id }}, {{$bit->id }})" class="btn btn-primary">Ver</button></td>
             </tr>
             @endif
          @endforeach
@@ -34,7 +36,7 @@
         </div>
     @endif
 <div>
-   <label> <b class="text-danger">CERRRADAS</b> | <b class="text-primary"> ASIGNADAS</b></label>
+   <label> <b class="text-danger">CERRRADA</b> | <b class="text-primary"> ASIGNADA</b></label>
 </div>
 
 <script>

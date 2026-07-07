@@ -5,5 +5,6 @@
         </h2>
     </div>
     <br><br>
+    ya inutilizada
     @include("Registro.Responsables.index") 
 </div>

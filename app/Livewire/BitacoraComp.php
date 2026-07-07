@@ -14,10 +14,10 @@ use Auth;
 class BitacoraComp extends Component
 {
     use WithPagination;
-    public $shearch, $ticketSeleccionado, $solicitud, $solicitud_id,$soli_servicios_id, $tecnico_id, $solucion, $diagnostico, $recomendacion, $prioridad, $fecha, $Bitacora;
+    public $shearch, $ticketSeleccionado, $solicitud, $isOpenShow, $solicitud_id,$soli_servicios_id, $tecnico_id, $solucion, $diagnostico, $recomendacion, $prioridad, $fecha, $Bitacora, $IDBitacora, $servicio;
 
 
-    
+
 
     public function render()
     {  
@@ -33,6 +33,15 @@ class BitacoraComp extends Component
         $this->ticketSeleccionado = $solicitud->codigo;
         $this->solicitud_id = $solicitud->id;
         $this->solicitud= $solicitud;
+    }
+
+    public function Show($sol, $bit)
+    {
+        $this->isOpenShow = true; 
+        $servicio = SoliServicio::findOrFail($sol);
+        $this->servicio = $servicio;  
+        $IDBitacora = Bitacora::findOrFail($bit); 
+        $this->IDBitacora = $IDBitacora;          
     }
 
     public function store(){
@@ -53,7 +62,7 @@ class BitacoraComp extends Component
         $this->resetInputFields();
         session()->flash('message', 'Registro actualizado.');
     }
-
+    public function closeModal() { $this->isOpen = false;  $this->resetInputFields(); $this->isOpenShow = false; }
     public function resetInputFields(){
         $this->diagnostico ='';
         $this->solucion= '';
