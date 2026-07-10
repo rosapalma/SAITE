@@ -15,11 +15,11 @@
                 </tr>
             </tbody>
         </table>
-<div class="d-flex p-10 bg-light">
+<div class="d-flex p-10 upel-table">
     <div class="p-2 bg-primary  col-md-6">
         @include('Servicio.Solicitud.form')
     </div>&nbsp;
-    <div class="p-2 bg-secondary  col-md-6">
+    <div class="p-2 upel-table  col-md-6">
         @include('Servicio.Solicitud.tool')
     </div>
 

@@ -127,7 +127,7 @@
                 @endif
 
                 <!-- Settings Dropdown -->
-                <div class="ms-auto"  style="margin-left: 80%">
+                <div class="ms-auto"  style="">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())

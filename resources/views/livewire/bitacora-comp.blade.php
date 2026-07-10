@@ -1,8 +1,4 @@
 <div class="container">
-    <div class="p-6">
-        <h2 class="text-lg font-bold mb-4 title text-center">BITACORA...</h2>
-    </div>
-    <br><br>
    
       @if (Auth::user()->privilege != 4)
         @include("Administrar.Bitacora.index")                      

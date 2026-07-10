@@ -90,3 +90,114 @@
 .fila-seleccionable.seleccionada {
   background-color: #d1e7dd; /* Verde claro de ejemplo */
 }
+
+/* Forzar que los inputs y textareas del formulario tengan bordes más redondeados estilo SAITE */
+.saite-card .form-control {
+    border-radius: 10px !important;
+    border: 1px solid #ccd6e0;
+    padding: 10px 15px;
+    height: auto;
+}
+
+/* Redondear las esquinas de la tabla de información */
+.upel-table {
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: separate !important;
+    border-spacing: 0;
+}
+
+/* Ocultar el título/texto repetido de Bitácora en la parte superior */
+body.font-sans.antialiased h1.text-dark.text-center, 
+header h2, 
+.max-w-7xl h2 {
+    display: none !important;
+}
+
+/* Forzar que los inputs tengan bordes redondeados pronunciados */
+.saite-card .saite-input {
+    border-radius: 12px !important;
+    border: 1px solid #ccd6e0 !important;
+    padding: 12px 15px !important;
+    height: auto !important;
+    box-shadow: none !important;
+}
+
+/* Redondear perfectamente las esquinas de la tabla superior */
+.upel-table {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border: 1px solid #b0b0b0 !important;
+}
+
+.upel-table th:first-child {
+    border-top-left-radius: 11px;
+}
+.upel-table th:last-child {
+    border-top-right-radius: 11px;
+}
+.upel-table tr:last-child td:first-child {
+    border-bottom-left-radius: 11px;
+}
+.upel-table tr:last-child td:last-child {
+    border-bottom-right-radius: 11px;
+}
+
+/* Forzar bordes muy redondeados y limpios en la tarjeta blanca */
+.saite-card {
+    background-color: #ffffff !important;
+    border: 1px solid #ccd6e0 !important;
+    border-radius: 16px !important;
+    padding: 25px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+
+/* Redondear por completo los campos de texto del formulario */
+.saite-card .form-control {
+    border-radius: 12px !important;
+    border: 1px solid #ccd6e0 !important;
+    padding: 12px 15px !important;
+    height: auto !important;
+    font-size: 0.95rem !important;
+    background-color: #f9fbff !important;
+}
+
+/* Redondear por completo la tabla de información superior */
+.upel-table {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border: 1px solid #ccd6e0 !important;
+    background-color: #c7c8ca;
+}
+.upel-table th {
+    background-color: #eef2f7 !important;
+    color: #333333 !important;
+    font-weight: bold !important;
+    border: none !important;
+}
+.upel-table td {
+    border: none !important;
+    border-top: 1px solid #ccd6e0 !important;
+    background-color: #ffffff !important;
+}
+
+/* Redondear también la tabla de tickets del archivo tool.blade.php */
+.table {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border: 1px solid #ccd6e0 !important;
+}
+.table thead.thead-dark th {
+    background-color: #0047bb !important; /* Azul UPEL/SAITE */
+    border: none !important;
+}
+.table tbody td {
+    border: none !important;
+    border-top: 1px solid #eef2f7 !important;
+}
