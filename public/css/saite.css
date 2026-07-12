@@ -141,9 +141,6 @@ header h2,
 .upel-table tr:last-child td:first-child {
     border-bottom-left-radius: 11px;
 }
-.upel-table tr:last-child td:last-child {
-    border-bottom-right-radius: 11px;
-}
 
 /* Forzar bordes muy redondeados y limpios en la tarjeta blanca */
 .saite-card {

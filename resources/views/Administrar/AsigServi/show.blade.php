@@ -11,7 +11,7 @@
                 <p>Asunto:  {{$servicio->asunto}}</p>      
                 <p>Descripcion: {{$servicio->descripcion}}</p>
                 <p>De Fecha: {{$servicio->fecha}}</p>
-
+             
         </div>
         <div class="p-4 bg-gray-50 flex justify-end">
             <button type="button" wire:click="closeModal()" class="btn btn-danger">Cerrar</button>

@@ -2,8 +2,11 @@
     <h2 style="font-weight: bold; margin-bottom: 20px; text-transform: uppercase; font-size: 1.2rem;">
         Solicitud de Servicio
     </h2>
+     @if (session('error')) <!-- ACA EL MENSJ DE ERROR-->
+        <h1 align="center" class="text-danger">      {{ session('error') }}  </h1>
+    @endif
 
-    <form wire:submit.prevent="Save">
+    <form wire:submit.prevent="store">
 
         <div class="solicitud-grid">
             
@@ -69,9 +72,17 @@
 
         </div>
 
-        <div style="text-align: center; margin-top: 30px;">
-            <button type="submit" wire:click="Save" class="btn-saite-enviar">ENVIAR</button>
-        </div>
+        
+        @if($editar)
+            <div style="text-align: center; margin-top: 30px;">
+                <button type="submit" wire:click="update({{$EditSolicitud}})" class="btn-saite-enviar">ACTUALIZAR</button>
+            </div>
+        @else
+        <div>
+              <x-button>ENVIAR</x-button>
+            </div>
+        @endif
+        
 
     </form>
 </div>

@@ -20,10 +20,31 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert(///fijo
         [
-            'responsable_id'=>1,
+            'responsable_id'=>1, //adminis
             'email'=>'virginia.palma.ipm@upel.edu.ve',
             'password' => Hash::make('17708149'),
             'privilege' => 1], 
         );
+    //     DB::table('users')->insert(///fijo
+    //     [
+    //         'responsable_id'=>2, //gestor
+    //         'email'=>'carlo@ca',
+    //         'password' => Hash::make('17708149'),
+    //         'privilege' => 2], 
+    //     );
+    //     DB::table('users')->insert(///fijo
+    //     [
+    //         'responsable_id'=>3, //tecnico
+    //         'email'=>'belkis@be',
+    //         'password' => Hash::make('17708149'),
+    //         'privilege' => 3], 
+    //     );
+    //        DB::table('users')->insert(///fijo
+    //     [
+    //         'responsable_id'=>4,
+    //         'email'=>'uri@ur',
+    //         'password' => Hash::make('17708149'),
+    //         'privilege' => 4], 
+    //     );
     }
 }

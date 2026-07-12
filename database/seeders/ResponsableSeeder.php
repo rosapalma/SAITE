@@ -24,6 +24,24 @@ class ResponsableSeeder extends Seeder
             'email'=> 'virginia.palma.ipm@upel.edu.ve',
             'ubicacion_id'=> 1,], 
             );
+          // DB::table('responsables')->insert(
+          //   ['cedula'=>1111,
+          //   'full_name' => 'CARLOS B.GESTOR',
+          //   'email'=> 'carlo@ca',
+          //   'ubicacion_id'=> 1,], 
+          //   );
+          //   DB::table('responsables')->insert(
+          //   ['cedula'=>2222,
+          //   'full_name' => 'BELKIS V. TECNICO',
+          //   'email'=> 'belhis@be',
+          //   'ubicacion_id'=> 1,], 
+          //   );
+          //     DB::table('responsables')->insert(
+          //   ['cedula'=>333,
+          //   'full_name' => 'URIMARI',
+          //   'email'=> 'uri@ur',
+          //   'ubicacion_id'=> 1,], 
+          //   );
 
     }
 }

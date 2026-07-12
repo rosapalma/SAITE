@@ -19,7 +19,7 @@ class Bitacora extends Model
 
     public function tecnico()
     {
-        return $this->belongsTo(Responsable::class);
+        return $this->belongsTo(Responsable::class, 'responsable_id','id');
 
     }
 

@@ -32,7 +32,7 @@
         </div>
     @endif
 <div>
-   <label> <b class="text-danger">CERRRADAS</b> | <b class="text-primary"> ASIGNADAS</b>| <b class="text-warning">PENDIENTES</b></label>
+   <label> <b class="text-danger">CERRRADA</b> | <b class="text-primary"> ASIGNADA</b>| <b class="text-warning">PENDIENTE</b></label>
 </div>
 
 <script>

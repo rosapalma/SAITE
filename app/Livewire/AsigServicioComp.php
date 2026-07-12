@@ -14,17 +14,10 @@ use Auth;
 class AsigServicioComp extends Component
 {
     use WithPagination;
-    public $responsable, $equipos, $UserSoport, $tecnico, $ticketSeleccionado,$servicio, $servicio_id, $prioridad, $shearch, $isOpenShow = false, $id;
+    public $responsable, $equipos, $UserSoport, $tecnico, $ticketSeleccionado,$servicio, $servicio_id, $prioridad, $shearch, $isOpenShow = false, $id, $editar, $tecnico_id;
 
     function mount(){
-        //$this->responsable =  Auth::user()->responsable['id'];
-        //$this->equipos = Equipo::where('responsable_id','=',$this->responsable)->get();
-        //$this->solicits = SoliServicio::where('responsable_id','=',$this->responsable)->get();
-        //$solicits = SoliServicio::where('statud', 'like', '%' . $this->shearch . '%')->get();
-        //$this->solicits=$solicits;
-        //$this->solicits = SoliServicio::all();
         $this->UserSoport = User::all();
-        //$this->solicits = $solicits;
     }
     public function render()
     {
@@ -41,15 +34,6 @@ class AsigServicioComp extends Component
         }
 
     }
-
-    public function leerFila($id)
-    {
-        // Busca el registro en la base de datos
-        $servicio = SoliServicio::find($id);
-        $this->ticketSeleccionado = $servicio->codigo;
-        $this->servicio_id = $servicio->id;
-        $this->servicio= $servicio;
-    }
     public function Show($id)
     {
        // $this->leerFila();
@@ -58,14 +42,33 @@ class AsigServicioComp extends Component
         $this->servicio = $servicio;     
     }
 
+    public function leerFila($id)
+    {
+        // Busca el registro en la base de datos
+        $servicio = SoliServicio::find($id);
+        $this->ticketSeleccionado = $servicio->codigo;
+        $this->servicio_id = $servicio->id;
+        $this->servicio= $servicio;
+        if($servicio->Bitacora){
+            $this->editar = true; 
+            $this->tecnico =   $servicio->Bitacora->tecnico['full_name'];
+            $this->tecnico_id=   $servicio->Bitacora->tecnico['id'];
+            $this->prioridad =   $servicio->Bitacora['prioridad'];
+        }else{
+            $this->editar = false;
+        }
+        
+    }
+
+   
+
     public function store(){
-          $this->validate([
+        $this->validate([
             'servicio_id'=>'required',
             'tecnico' => 'required',   
             'prioridad' => 'required',
         ]);
-       
-        Bitacora::Create([
+       Bitacora::updateOrCreate(['id' => $this->servicio_id], [
             'soli_servicios_id'=> $this->servicio_id,
             'responsable_id' => $this->tecnico,    //guarda el id de usuarios        
             'prioridad' => $this->prioridad,
@@ -88,5 +91,7 @@ class AsigServicioComp extends Component
         $this->ticketSeleccionado= '';
         $this->prioridad ='';
         $this->tecnico ='';
+        $this->tecnico_id ='';
+        $this->editar =false;
     }
 }

@@ -3,23 +3,32 @@
 <form wire:submit.prevent="store">
    <h1 class="text-primary">TICKET: <b class="p-2">{{$ticketSeleccionado}}<b></h1>
    <br>
+   @if($editar)
+      <p class="text-primary">Asignado a:{{$tecnico}}</p>
+      <br>
+   @endif
    <select wire:model.live="tecnico" class="form-control">
-      <option>ASIGNAR SERVICIO A:</option>
+      <option>TÉCNICO:</option>
       @foreach ($UserSoport as $US)
-         @if($US->privilege < 4 )
-            <option value="{{$US->responsable_id}}">{{$US->responsable['full_name']}}</option>
+         @if($US->privilege < 4 && $US->privilege !=1 )
+            @if ($tecnico_id == $US->responsable_id)
+               <option value="{{$US->responsable_id}}" selected>{{$US->responsable['full_name']}}}</option>
+            @else      
+               <option value="{{$US->responsable_id}}">{{$US->responsable['full_name']}}</option>
+            @endif
          @endif
       @endforeach
    </select>
-   
+
    <br><br>
    <select wire:model.live="prioridad" class="form-control">
       <option selected>PRIORIDAD</option>
-      <option>ALTA</option>
-      <option>NORMAL</option>
+      <option value="ALTA">ALTA</option>
+      <option value="NORMAL">NORMAL</option>
    </select>
    <br>
-   <div class="">
-     <x-button> GURDAR</x-button>
-   </div>
+
+      <div>
+        <x-button> GURDAR</x-button>
+      </div>
 </form>
