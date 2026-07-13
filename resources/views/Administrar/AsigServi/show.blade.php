@@ -11,6 +11,14 @@
                 <p>Asunto:  {{$servicio->asunto}}</p>      
                 <p>Descripcion: {{$servicio->descripcion}}</p>
                 <p>De Fecha: {{$servicio->fecha}}</p>
+                @if($servicio->statud=='CERRADA')
+                    <hr><hr>
+                      <p>SOLUCION: {{$servicio->Bitacora['solucion']}}</p>
+                          <p>DIAGNOSTICO: {{$servicio->Bitacora['diagnostico']}}</p>
+                    <p>RECOMENDACIÓN: {{$servicio->Bitacora['recomendacion']}}</p>
+                    <p>FECHA: {{$servicio->Bitacora['fecha}}</p>
+            
+                @endif
              
         </div>
         <div class="p-4 bg-gray-50 flex justify-end">

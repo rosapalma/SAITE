@@ -10,6 +10,7 @@ use App\Models\Responsable;
 use App\Models\Bitacora;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Carbon;
 
 class BitacoraComp extends Component
 {

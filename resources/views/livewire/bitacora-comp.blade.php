@@ -5,7 +5,7 @@
       @else
             <br><br>
             <p class="display-7 text-center text-bold" style="padding-top: 20%;">
-              NO ESTA AUTORIZADO A VISITAR ESTA PAGINA
+              NO ESTA AUTORIZADO A VISITAR ESTA PÁGINA
             </p>
       @endif
 </div>

@@ -35,7 +35,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{route('Bitacora')}}" :active="request()->routeIs('Bitacora')">
-                       {{ __('Bitacora') }}
+                       {{ __('Bitácora') }}
                     </x-nav-link>
                 </div>
                  <!-- Menu Dropdown Registro-->
@@ -151,11 +151,11 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Administrar cuenta') }}
                             </div>
 
                             <x-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Perfil') }}
                             </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -172,7 +172,7 @@
 
                                 <x-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Cerrar Sección') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>

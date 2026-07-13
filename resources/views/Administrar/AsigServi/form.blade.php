@@ -7,16 +7,17 @@
       <p class="text-primary">Asignado a:{{$tecnico}}</p>
       <br>
    @endif
+   tecnico{{$tecnico_id}}
    <select wire:model.live="tecnico" class="form-control">
       <option>TÉCNICO:</option>
       @foreach ($UserSoport as $US)
-         @if($US->privilege < 4 && $US->privilege !=1 )
+         
             @if ($tecnico_id == $US->responsable_id)
                <option value="{{$US->responsable_id}}" selected>{{$US->responsable['full_name']}}}</option>
             @else      
                <option value="{{$US->responsable_id}}">{{$US->responsable['full_name']}}</option>
             @endif
-         @endif
+        
       @endforeach
    </select>
 

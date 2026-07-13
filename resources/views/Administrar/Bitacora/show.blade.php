@@ -6,6 +6,12 @@
                 <h2 class="title text-lg font-bold mb-4">DETALLES DEL SERVICIO</h2>
             </div>
             <div class="show" >
+                  <p>Usuario: {{$servicio->responsable['full_name']}}</p>
+                    <p>{{$servicio->equipo->tipo['name']}} | Marca: {{$servicio->equipo['marca']}}| Modelo: {{$servicio->equipo['modelo']}}</p>
+                     <p>Tipo de falla: {{$servicio->tipo_falla}}</p>
+                    <p>Asunto:  {{$servicio->asunto}}</p> 
+                    <hr>
+                    <hr>
                 <p>SOLUCION: {{$IDBitacora->solucion}}</p>
                 <p>DIAGNOSTICO: {{$IDBitacora->diagnostico}}</p>
                 <p>RECOMENDACIÓN: {{$IDBitacora->recomendacion}}</p>

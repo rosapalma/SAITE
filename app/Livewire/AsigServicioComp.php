@@ -10,6 +10,7 @@ use App\Models\Responsable;
 use App\Models\Bitacora;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Carbon;
 
 class AsigServicioComp extends Component
 {
@@ -17,8 +18,9 @@ class AsigServicioComp extends Component
     public $responsable, $equipos, $UserSoport, $tecnico, $ticketSeleccionado,$servicio, $servicio_id, $prioridad, $shearch, $isOpenShow = false, $id, $editar, $tecnico_id;
 
     function mount(){
-        $this->UserSoport = User::all();
+        $this->UserSoport = User::where('privilege','=','2')->orwhere('privilege','=','3')->get();
     }
+
     public function render()
     {
         if($this->shearch){
@@ -72,6 +74,7 @@ class AsigServicioComp extends Component
             'soli_servicios_id'=> $this->servicio_id,
             'responsable_id' => $this->tecnico,    //guarda el id de usuarios        
             'prioridad' => $this->prioridad,
+            'fecha' => now(),
         ]);
         //ACTUALIZAR EL ESTADO DE LA SOLICITUD
         $UpdateSolicitud = SoliServicio::where('id','=',$this->servicio_id )->first();
