@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
 class AsigServicioComp extends Component
 {
     use WithPagination;
-    public $responsable, $equipos, $UserSoport, $tecnico, $ticketSeleccionado,$servicio, $servicio_id, $prioridad, $shearch, $isOpenShow = false, $id, $editar, $tecnico_id;
+    public $responsable, $equipos, $UserSoport, $tecnico, $ticketSeleccionado,$servicio, $servicio_id, $prioridad, $shearch, $isOpenShow = false, $id, $editar, $tecnico_id, $EdoSolid=false;
 
     function mount(){
         $this->UserSoport = User::where('privilege','=','2')->orwhere('privilege','=','3')->get();
@@ -46,19 +46,30 @@ class AsigServicioComp extends Component
 
     public function leerFila($id)
     {
+        $this->EdoSolid=false;
         // Busca el registro en la base de datos
         $servicio = SoliServicio::find($id);
         $this->ticketSeleccionado = $servicio->codigo;
         $this->servicio_id = $servicio->id;
-        $this->servicio= $servicio;
-        if($servicio->Bitacora){
+        $this->servicio= $servicio; 
+        if($servicio->statud !='CERRADA'){
+
+           if($servicio->Bitacora){
+            $this->EdoSolid =   $servicio->statud;
             $this->editar = true; 
             $this->tecnico =   $servicio->Bitacora->tecnico['full_name'];
             $this->tecnico_id=   $servicio->Bitacora->tecnico['id'];
             $this->prioridad =   $servicio->Bitacora['prioridad'];
+            $this->EdoSolid =   $servicio->statud;
+            }else{
+                $this->editar = false;
+                
+            }
         }else{
-            $this->editar = false;
+            $this->EdoSolid=true;
         }
+        
+        
         
     }
 

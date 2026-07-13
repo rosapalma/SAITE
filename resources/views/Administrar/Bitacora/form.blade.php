@@ -16,12 +16,13 @@
             </tr>
         </thead>
         <tbody>
+            @if ($solicitud)
             <tr>
                 <td>
-                    <strong>USUARIO:</strong> <?php echo strtoupper(Auth::user()->responsable['full_name']); ?><br>
+                    <strong>USUARIO:</strong> <?php $name= $solicitud->responsable_id;?><br> <!--ubicacion de usuario que realizo la solicitud-->
                     <strong>UBICACIÓN:</strong> UNIDAD DE INFORMÁTICA
                 </td>
-                @if ($solicitud)
+                
                     <td>
                         {{$solicitud->equipo->tipo['name']}} &nbsp; {{$solicitud->equipo['modelo']}}
                     </td>

@@ -16,7 +16,7 @@
                       <p>SOLUCION: {{$servicio->Bitacora['solucion']}}</p>
                           <p>DIAGNOSTICO: {{$servicio->Bitacora['diagnostico']}}</p>
                     <p>RECOMENDACIÓN: {{$servicio->Bitacora['recomendacion']}}</p>
-                    <p>FECHA: {{$servicio->Bitacora['fecha}}</p>
+                    <p>FECHA: {{$servicio->Bitacora['fecha']}}</p>
             
                 @endif
              

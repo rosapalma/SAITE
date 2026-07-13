@@ -51,7 +51,7 @@
                         <option>SELECCIONE</option>
                         <option value="HARDWARE">HARDWARE</option>
                         <option value="SOFTWARE">SOFTWARE</option>
-                        <option>NO SE</option>
+                        <option value="INDETERMINADA">INDETERMINADA</option>
                     </select>
                 </div>
 
