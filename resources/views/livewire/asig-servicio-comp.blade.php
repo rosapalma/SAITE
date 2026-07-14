@@ -1,4 +1,4 @@
-<div>
+<div class="container">
       @if (Auth::user()->privilege < 3)   <!--solo para administrador y gestor-->                  
          @include('Administrar.AsigServi.index')
       @else

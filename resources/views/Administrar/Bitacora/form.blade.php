@@ -19,8 +19,8 @@
             @if ($solicitud)
             <tr>
                 <td>
-                    <strong>USUARIO:</strong> <?php $name= $solicitud->responsable_id;?><br> <!--ubicacion de usuario que realizo la solicitud-->
-                    <strong>UBICACIÓN:</strong> UNIDAD DE INFORMÁTICA
+                    <strong>USUARIO:</strong> {{$solicitud->responsable['full_name']}}<br> <!--ubicacion de usuario que realizo la solicitud-->
+                    <strong>UBICACIÓN:</strong> {{$solicitud->responsable->ubicacion['name']}}
                 </td>
                 
                     <td>

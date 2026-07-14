@@ -34,6 +34,11 @@ class BitacoraComp extends Component
         $this->ticketSeleccionado = $solicitud->codigo;
         $this->solicitud_id = $solicitud->id;
         $this->solicitud= $solicitud;
+        $this->recomendacion = $solicitud->Bitacora['recomendacion'];
+        $this->diagnostico = $solicitud->Bitacora['diagnostico'];
+        $this->solucion = $solicitud->Bitacora['solucion'];
+        $this->fecha = $solicitud->Bitacora['fecha'];
+
     }
 
     public function Show($sol, $bit)
