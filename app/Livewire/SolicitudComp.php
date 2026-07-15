@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
 class SolicitudComp extends Component
 {
     public $resp_id, $descripcion, $asunto, $tipo,$marca, $modelo, $serial, $serial_BN, $tipo_falla, $fecha,$equipos, $codigo, $ult;
-    public $solicits, $opcionSeleccionada, $resultados = [], $editar=false, $EditSolicitud;
+    public $solicits, $opcionSeleccionada, $resultados = [], $editar=false, $EditSolicitud, $isOpenShow=false, $servicio;
 
     function mount(){
         $this->ult = SoliServicio::all()->last(); // ultimo nro generado
@@ -27,6 +27,14 @@ class SolicitudComp extends Component
     public function render()
     {
         return view('livewire.solicitud-comp');
+    }
+
+    public function Show($id)
+    {
+       // $this->leerFila();
+        $this->isOpenShow = true; 
+        $servicio = SoliServicio::findOrFail($id);
+        $this->servicio = $servicio;     
     }
 
 
@@ -66,7 +74,7 @@ class SolicitudComp extends Component
         //VALIDA SI EQUIPO TIENE UNA SOLICITUD ABIERTA
         $solicitud = SoliServicio::where('equipo_id','=',$this->opcionSeleccionada)->latest()->first(); 
         if (!empty($solicitud) && $solicitud->statud != 'CERRADA'){
-            session()->flash('error', 'Este equipo, ya tiene una solicitus de servicio en proceso.');
+            session()->flash('error', 'Este equipo, ya tiene una solicitud en proceso.');
         }else{
             SoliServicio::Create([
             'responsable_id' => $this->resp_id,
@@ -108,6 +116,7 @@ class SolicitudComp extends Component
         $this->mount();
         $this->clear(); 
     }
+       public function closeModal() { $this->clear(); $this->isOpenShow = false; }
     
       public function clear(){
         $this->equipo_id='';

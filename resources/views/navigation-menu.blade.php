@@ -22,17 +22,20 @@
                 </div>
 
                 <!-- Navigation Links -->
+                 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Solicitud de Servicio') }}
                     </x-nav-link>
                 </div>
-               
+
+               @if((Auth::user()->privilege <  3))
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{route('AsigServicio')}}" :active="request()->routeIs('AsigServicio')">
                        {{ __('Asig. Servicio') }}
                     </x-nav-link>
                 </div>
+                @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{route('Bitacora')}}" :active="request()->routeIs('Bitacora')">
                        {{ __('Bitácora') }}
@@ -62,8 +65,10 @@
                                 {{ __('Equipos') }}
                             </x-dropdown-link>
                                 <!-- link menu de asignar usuario borrado route RegistResponsabl }} -->
-                              <x-dropdown-link href="{{ route('usuarios') }}" >{{ __('Usuarios') }}
-                            </x-dropdown-link>                  
+                            @if((Auth::user()->privilege != 3))
+                              <x-dropdown-link href="{{ route('usuarios') }}" >{{   __('Usuarios') }}
+                                </x-dropdown-link> 
+                            @endif                 
 
 
                           

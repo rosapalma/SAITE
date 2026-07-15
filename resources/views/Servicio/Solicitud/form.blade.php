@@ -2,7 +2,7 @@
     <h2 style="font-weight: bold; margin-bottom: 20px; text-transform: uppercase; font-size: 1.2rem;">
         Solicitud de Servicio
     </h2>
-     @if (session('error')) <!-- ACA EL MENSJ DE ERROR-->
+    @if (session('error')) <!-- ACA EL MENSJ DE ERROR-->
         <h1 align="center" class="text-danger">      {{ session('error') }}  </h1>
     @endif
 

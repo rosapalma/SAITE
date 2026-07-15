@@ -24,3 +24,7 @@
     </div>
 
 </div>
+
+@if($isOpenShow)
+ @include('Servicio.Solicitud.show')
+@endif
