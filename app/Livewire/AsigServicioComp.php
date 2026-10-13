@@ -59,6 +59,7 @@ class AsigServicioComp extends Component
 
     public function leerFila($id)
     {
+        $this->resetInputFields();
         $this->EdoSolid=false;
         // Busca el registro en la base de datos
         $servicio = SoliServicio::find($id);
@@ -126,5 +127,6 @@ class AsigServicioComp extends Component
         $this->tecnico_id ='';
         $this->editar =false;
         $this->EdoSolid = false;
+        $this->tecnicoAsig = '';
     }
 }

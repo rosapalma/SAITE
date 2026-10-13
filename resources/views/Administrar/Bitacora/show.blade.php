@@ -25,8 +25,9 @@
       
      
         <div class="p-4 bg-gray-50 flex justify-end">
-            <button type="button" wire:click="closeModal()" class="btn btn-danger">Cerrar</button>
+            <x-button-close>Cerrar</x-button-close>
         </div>
+
      </div>
 </div>
 

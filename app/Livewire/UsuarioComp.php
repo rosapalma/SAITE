@@ -22,7 +22,7 @@ class UsuarioComp extends Component
         //$this->usuarios = User::orderBy('id', 'desc')->get();
         $this->ubicacions = Ubicacion::all();
     }
- public function render()
+     public function render()
     {
         
         $usuarios = User::paginate(10);
@@ -32,14 +32,8 @@ class UsuarioComp extends Component
 
 
     }
+
     
-
-
-
-
-
-
-
 
     public function Show ($id){
         $this->isOpenShow = true; 
@@ -79,8 +73,7 @@ class UsuarioComp extends Component
     public  function store(){
          $this->validate([
             'privilege'=> 'required',
-            'password'=>'required',
-            'password_confirmation'=>'required',
+            'password'=>['required','min:8', 'confirmed'],
         ]);
         $this->SaveResp();
         $responsable = Responsable::where('cedula','=',$this->cedula)->first();
