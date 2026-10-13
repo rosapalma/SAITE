@@ -13,18 +13,24 @@ use Auth;
 class UsuarioComp extends Component
 {
     
-      use WithPagination;
+    use WithPagination;
 
-    public $user_id, $full_name, $cedula, $cargo, $ubicacion_id, $email, $password_confirmation, $password,$usuarios, $privilege, $ubicacions, $isOpenShow=false, $isOpen=false, $editar=false, $shearch, $responsable_id;
+    public $user_id, $full_name, $cedula, $cargo, $ubicacion_id, $email, $password_confirmation, $password, $privilege, $ubicacions, $isOpenShow=false, $isOpen=false, $editar=false, $shearch, $responsable_id;
    
 
     function mount(){
-        $this->usuarios = User::orderBy('id', 'desc')->get();
+        //$this->usuarios = User::orderBy('id', 'desc')->get();
         $this->ubicacions = Ubicacion::all();
     }
  public function render()
     {
-        return view('livewire.usuario-comp');
+        
+        $usuarios = User::paginate(10);
+        return view('livewire.usuario-comp', [
+            'usuarios' => $usuarios
+        ]);
+
+
     }
     
 

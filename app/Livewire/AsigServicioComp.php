@@ -16,20 +16,33 @@ class AsigServicioComp extends Component
 {
     use WithPagination;
     public $responsable, $equipos, $UserSoport, $tecnico, $ticketSeleccionado,$servicio, $servicio_id, $prioridad, $shearch, $isOpenShow = false, $id, $editar, $tecnico_id, $tecnicoAsig, $EdoSolid=false;
+    public $resultado, $data , $labels;
 
     function mount(){
         $this->UserSoport = User::where('privilege','=','2')->orwhere('privilege','=','3')->get();
+        $this->resultado = SoliServicio::select('statud', \DB::raw('count(*) as total'))
+        ->groupBy('statud')
+        ->get();
+        $this->labels = $this->resultado->pluck('statud');
+        $this->data = $this->resultado->pluck('total');
+   
     }
+
+   
+    //VERIFICAR ACA COMO SE EJECUTA EK NETIDI RENDER
 
     public function render()
     {
+        
+
+
         if($this->shearch){
             $solicits = SoliServicio::where('statud', 'like', '%' . $this->shearch . '%')->paginate(6);
             return view('livewire.asig-servicio-comp', [
                 'solicits' => $solicits
             ]);
         }else{
-            $solicits = SoliServicio::paginate(6);
+            $solicits = SoliServicio::paginate(10);
             return view('livewire.asig-servicio-comp', [
                 'solicits' => $solicits
             ]);
@@ -70,9 +83,10 @@ class AsigServicioComp extends Component
 
     public function store(){
         $this->validate([
-            'servicio_id'=>'required',
+            'ticketSeleccionado' => 'required',
             'tecnico' => 'required',   
             'prioridad' => 'required',
+            
         ]);
         if($this->editar){
             $Bitacora = Bitacora::where('soli_servicios_id','=',$this->servicio_id )->first();
@@ -99,7 +113,7 @@ class AsigServicioComp extends Component
         $UpdateSolicitud->save();
         $this->mount();
         $this->resetInputFields();
-        session()->flash('message', 'Registro actualizado.');
+        session()->flash('message', 'Solicitud Actualizada');
 
     }
     public function closeModal() { $this->isOpen = false;  $this->resetInputFields(); $this->isOpenShow = false; }

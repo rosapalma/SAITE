@@ -27,9 +27,11 @@
          <option value="NORMAL">NORMAL</option>
       </select>
       <br>
-
-         <div>
-           <x-button> GURDAR</x-button>
-         </div>
+      <div>
+       
+       
+             <x-button> GURDAR</x-button>
+           
+      </div>
    </form>
 </div>

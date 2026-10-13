@@ -39,7 +39,7 @@ class EquipoComp extends Component
                 ->when($this->searchestado, function($query) {
                     $query->where('estado', $this->searchestado);
                 })
-                ->paginate(3)
+                ->paginate(10)
         ]);
 
     }

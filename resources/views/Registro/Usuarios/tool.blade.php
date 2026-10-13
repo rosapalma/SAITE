@@ -34,6 +34,11 @@
     @endforeach
   </tbody>
 </table>
+@if($usuarios->count())
+  <div style="color:blue;">
+    {{ $usuarios->links() }}    
+  </div>
+@endif
 
 
 

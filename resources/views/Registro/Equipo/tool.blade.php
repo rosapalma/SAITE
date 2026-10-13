@@ -28,11 +28,11 @@
     @endforeach
   </tbody>
 </table>
- @if($equipos->count())
-        <div style="color:blue;">
-            {{ $equipos->links() }}    
-        </div>
-    @endif
+@if($equipos->count())
+  <div style="color:blue;">
+    {{ $equipos->links() }}    
+  </div>
+@endif
 
 
 

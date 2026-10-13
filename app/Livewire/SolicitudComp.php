@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
 class SolicitudComp extends Component
 {
     public $resp_id, $descripcion, $asunto, $tipo,$marca, $modelo, $serial, $serial_BN, $tipo_falla, $fecha,$equipos, $codigo, $ult;
-    public $solicits, $opcionSeleccionada, $resultados = [], $editar=false, $EditSolicitud;
+    public $solicits, $cont, $opcionSeleccionada, $resultados = [], $editar=false, $EditSolicitud;
 
     function mount(){
         $this->ult = SoliServicio::all()->last(); // ultimo nro generado
@@ -26,7 +26,12 @@ class SolicitudComp extends Component
 
     public function render()
     {
-        return view('livewire.solicitud-comp');
+        //return view('livewire.solicitud-comp');
+
+        $solicits = SoliServicio::where('responsable_id', $this->resp_id)->paginate(5);
+        return view('livewire.solicitud-comp', [
+            'solicits' => $solicits
+        ]);
     }
 
 

@@ -61,9 +61,10 @@
         </div>
         
         <div class="text-right">
-            <button type="submit" class="btn btn-saite-enviar">
-                <i class="fas fa-save mr-2"></i> Guardar Bitácora
-            </button>
+            <!-- <button type="submit" class="btn btn-saite-enviar" @if (!$ticketSeleccionado) disabled @endif>
+                <i class="fas fa-save mr-2"></i> Guardar 
+            </button> -->
+            <x-button> GURDAR</x-button>
         </div>
 
     </form>

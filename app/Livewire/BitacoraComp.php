@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
 class BitacoraComp extends Component
 {
     use WithPagination;
-    public $shearch, $ticketSeleccionado, $solicitud, $isOpenShow, $solicitud_id,$soli_servicios_id, $tecnico_id, $solucion, $diagnostico, $recomendacion, $prioridad, $fecha, $Bitacora, $IDBitacora, $servicio;
+    public $shearch, $ticketSeleccionado='', $solicitud, $isOpenShow, $solicitud_id,$soli_servicios_id, $tecnico_id, $solucion, $diagnostico, $recomendacion, $prioridad, $fecha, $Bitacora, $IDBitacora, $servicio;
 
 
 
@@ -51,6 +51,9 @@ class BitacoraComp extends Component
     }
 
     public function store(){
+        $this->validate([
+            'ticketSeleccionado' => 'required',
+        ]);
         $Bitacora =  Bitacora::where('soli_servicios_id','=', $this->solicitud_id)->first();
         $Bitacora->update([
             'diagnostico' => $this->diagnostico,
@@ -76,5 +79,7 @@ class BitacoraComp extends Component
         $this->fecha ='';
         $this->solicitud ='';
         $this->solicitud_id ='';
+        $this->ticketSeleccionado ='';
+
     }
 }
